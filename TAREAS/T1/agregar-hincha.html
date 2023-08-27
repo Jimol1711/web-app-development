@@ -28,103 +28,137 @@
         }
     </style>
     <script>
-        function updateComunas() {
-            var regionSelect = document.getElementById("region");
-            var comunaSelect = document.getElementById("comuna");
-            var selectedRegion = regionSelect.value;
-            
-            // Replace this part with your own data for each region and its associated comunas
-            // Example: You can use an object or an array to map regions to their corresponding comunas
-            var comunasByRegion = {
-                "Region1": ["Comuna1", "Comuna2", "Comuna3"],
-                "Region2": ["Comuna4", "Comuna5", "Comuna6"]
-                // Add more regions and their associated comunas here
-            };
+        // Cargar los datos del archivo JSON
+        fetch('comunas-regiones.json')
+            .then(response => response.json())
+            .then(data => {
+                const regionSelect = document.getElementById("region");
+                const comunaSelect = document.getElementById("comuna");
+                const deporteSelect = document.getElementById("deporteSelect"); // Cambio aquí
 
-            // Clear previous options
-            comunaSelect.innerHTML = "";
-            
-            // Populate comunas based on selected region
-            comunasByRegion[selectedRegion].forEach(function(comuna) {
-                var option = document.createElement("option");
-                option.value = comuna;
-                option.textContent = comuna;
-                comunaSelect.appendChild(option);
-            });
-        }
+                // Llena el menú desplegable de regiones
+                const defaultRegionOption = document.createElement("option");
+                defaultRegionOption.value = "";
+                defaultRegionOption.textContent = "Seleccione una región";
+                regionSelect.appendChild(defaultRegionOption);
+                
+                // Llena el menú desplegable de regiones
+                for (const regionInfo of data.regiones) {
+                    const option = document.createElement("option");
+                    option.value = regionInfo.region;
+                    option.textContent = regionInfo.region;
+                    regionSelect.appendChild(option);
+                }
+
+                // Llena el menú desplegable de deportes
+                const defaultDeporteOption = document.createElement("option");
+                defaultDeporteOption.value = "";
+                defaultDeporteOption.textContent = "Seleccione un deporte";
+                deporteSelect.appendChild(defaultDeporteOption);
+
+                // Llena el menú desplegable de deportes con opciones
+                const deportes = [
+                "Adiestramiento ecuestre",
+                "Atletismo",
+                "Bádminton",
+                "Balonmano",
+                "Básquetbol",
+                "Básquetbol 3x3",
+                "Béisbol",
+                "BMX Freestyle",
+                "BMX Racing",
+                "Bowling",
+                "Boxeo",
+                "Breaking",
+                "Canotaje de velocidad",
+                "Canotaje Slalom",
+                "Clavados",
+                "Ciclismo pista",
+                "Ciclismo ruta",
+                "Clavados",
+                "Escalada deportiva",
+                "Esgrima",
+                "Esquí acuático y Wakeboard",
+                "Evento completo ecuestre",
+                "Fútbol",
+                "Gimnasia artística Femenina",
+                "Gimnasia artística Masculina",
+                "Gimnasia rítmica",
+                "Gimnasia trampolín",
+                "Golf",
+                "Hockey césped",
+                "Judo",
+                "Karate",
+                "Levantamiento de pesas",
+                "Lucha",
+                "Maratón",
+                "Marcha",
+                "Mountain Bike",
+                "Natación",
+                "Natación artística",
+                "Natación en Aguas abiertas",
+                "Patinaje artístico",
+                "Patinaje velocidad",
+                "Pelota vasca",
+                "Pentatlón moderno",
+                "Polo acuático",
+                "Racquetball",
+                "Remo",
+                "Rugby 7",
+                "Salto ecuestre",
+                "Skateboarding",
+                "Sofbol",
+                "Squash",
+                "Surf",
+                "Taekwondo",
+                "Tenis",
+                "Tenis de mesa",
+                "Tiro",
+                "Tiro con arco",
+                "Triatlón",
+                "Vela",
+                "Vóleibol",
+                "Vóleibol playa"
+                ]
+
+                deportes.forEach(deporte => {
+                    const option = document.createElement("option");
+                    option.value = deporte;
+                    option.textContent = deporte;
+                    deporteSelect.appendChild(option);
+                });
+
+                // Función para actualizar las comunas basadas en la región seleccionada
+                function updateComunas() {
+                    const selectedRegion = regionSelect.value;
+                    const selectedRegionInfo = data.regiones.find(regionInfo => regionInfo.region === selectedRegion);
+                    comunaSelect.innerHTML = ""; // Limpiar opciones anteriores
+                    const defaultComunaOption = document.createElement("option");
+                    defaultComunaOption.value = "";
+                    defaultComunaOption.textContent = "Seleccione una comuna";
+                    comunaSelect.appendChild(defaultComunaOption);
+                    selectedRegionInfo.comunas.forEach(comuna => {
+                        const option = document.createElement("option");
+                        option.value = comuna;
+                        option.textContent = comuna;
+                        comunaSelect.appendChild(option);
+                    });
+                }
+
+                // Asignar la función de actualización al evento onchange
+                regionSelect.addEventListener("change", updateComunas);
+            })
+            .catch(error => console.error("Error al cargar el archivo JSON:", error));
     </script>
 </head>
 <body>
     <form>
         <label for="deporte">Deporte el cual desea apoyar:</label>
-        <select id="deporte" name="deporte" required>
-            <option value="Deporte">Seleccione Deporte...</option>
-            <option value="Deporte1">Adiestramiento ecuestre</option>
-            <option value="Deporte2">Atletismo</option>
-            <option value="Deporte3">Bádminton</option>
-            <option value="Deporte4">Balonmano</option>
-            <option value="Deporte5">Básquetbol</option>
-            <option value="Deporte6">Básquetbol 3x3</option>
-            <option value="Deporte7">Béisbol</option>
-            <option value="Deporte8">BMX Freestyle</option>
-            <option value="Deporte9">BMX Racing</option>
-            <option value="Deporte10">Bolos (Bowling)</option>
-            <option value="Deporte11">Boxeo</option>
-            <option value="Deporte12">Breaking</option>
-            <option value="Deporte13">Canotaje de velocidad</option>
-            <option value="Deporte14">Canotaje Slalom</option>
-            <option value="Deporte15">Ciclismo pista</option>
-            <option value="Deporte16">Ciclismo ruta</option>
-            <option value="Deporte17">Clavados</option>
-            <option value="Deporte18">Escalada deportiva</option>
-            <option value="Deporte19">Esgrima</option>
-            <option value="Deporte20">Esquí acuático y Wakeboard</option>
-            <option value="Deporte21">Evento completo ecuestre</option>
-            <option value="Deporte22">Fútbol</option>
-            <option value="Deporte23">Gimnasia artística Femenina</option>
-            <option value="Deporte24">Gimnasia artística Masculina</option>
-            <option value="Deporte25">Gimnasia rítmica</option>
-            <option value="Deporte26">Gimnasia trampolín</option>
-            <option value="Deporte27">Golf</option>
-            <option value="Deporte28">Hockey césped</option>
-            <option value="Deporte29">Judo</option>
-            <option value="Deporte30">Karate</option>
-            <option value="Deporte31">Levantamiento de pesas</option>
-            <option value="Deporte32">Lucha</option>
-            <option value="Deporte33">Maratón</option>
-            <option value="Deporte34">Marcha</option>
-            <option value="Deporte35">Mountain Bike</option>
-            <option value="Deporte36">Natación</option>
-            <option value="Deporte37">Natación artística</option>
-            <option value="Deporte38">Natación en Aguas abiertas</option>
-            <option value="Deporte39">Patinaje artístico</option>
-            <option value="Deporte40">Patinaje velocidad</option>
-            <option value="Deporte41">Pentatlón moderno</option>
-            <option value="Deporte42">Pelota vasca</option>
-            <option value="Deporte43">Polo acuático</option>
-            <option value="Deporte44">Racquetball</option>
-            <option value="Deporte45">Remo</option>
-            <option value="Deporte46">Rugby 7</option>
-            <option value="Deporte47">Salto ecuestre</option>
-            <option value="Deporte48">Skateboarding</option>
-            <option value="Deporte49">Sóftbol</option>
-            <option value="Deporte50">Squash</option>
-            <option value="Deporte51">Surf</option>
-            <option value="Deporte52">Taekwondo</option>
-            <option value="Deporte53">Tenis</option>
-            <option value="Deporte54">Tenis de mesa</option>
-            <option value="Deporte55">Tiro</option>
-            <option value="Deporte56">Tiro con arco</option>
-            <option value="Deporte57">Triatlón</option>
-            <option value="Deporte58">Vela</option>
-            <option value="Deporte59">Vóleibol</option>
-            <option value="Deporte60">Vóleibol playa</option>
+        <select id="deporteSelect" name="deporte" required>
         </select>
 
         <label for="region">Región en donde vive:</label>
         <select id="region" name="region" onchange="updateComunas();" required>
-            <!-- Populate with your region options -->
-            <!-- Example: <option value="Region1">Region1</option> -->
         </select>
 
         <label for="comuna">Comuna donde vive:</label>
