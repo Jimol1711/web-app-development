@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Hincha</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            width: 80%;
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        function updateComunas() {
+            var regionSelect = document.getElementById("region");
+            var comunaSelect = document.getElementById("comuna");
+            var selectedRegion = regionSelect.value;
+            
+            // Replace this part with your own data for each region and its associated comunas
+            // Example: You can use an object or an array to map regions to their corresponding comunas
+            var comunasByRegion = {
+                "Region1": ["Comuna1", "Comuna2", "Comuna3"],
+                "Region2": ["Comuna4", "Comuna5", "Comuna6"]
+                // Add more regions and their associated comunas here
+            };
+
+            // Clear previous options
+            comunaSelect.innerHTML = "";
+            
+            // Populate comunas based on selected region
+            comunasByRegion[selectedRegion].forEach(function(comuna) {
+                var option = document.createElement("option");
+                option.value = comuna;
+                option.textContent = comuna;
+                comunaSelect.appendChild(option);
+            });
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <label for="deporte">Deporte el cual desea apoyar:</label>
+        <select id="deporte" name="deporte" required>
+            <option value="Deporte">Seleccione Deporte...</option>
+            <option value="Deporte1">Adiestramiento ecuestre</option>
+            <option value="Deporte2">Atletismo</option>
+            <option value="Deporte3">Bádminton</option>
+            <option value="Deporte4">Balonmano</option>
+            <option value="Deporte5">Básquetbol</option>
+            <option value="Deporte6">Básquetbol 3x3</option>
+            <option value="Deporte7">Béisbol</option>
+            <option value="Deporte8">BMX Freestyle</option>
+            <option value="Deporte9">BMX Racing</option>
+            <option value="Deporte10">Bolos (Bowling)</option>
+            <option value="Deporte11">Boxeo</option>
+            <option value="Deporte12">Breaking</option>
+            <option value="Deporte13">Canotaje de velocidad</option>
+            <option value="Deporte14">Canotaje Slalom</option>
+            <option value="Deporte15">Ciclismo pista</option>
+            <option value="Deporte16">Ciclismo ruta</option>
+            <option value="Deporte17">Clavados</option>
+            <option value="Deporte18">Escalada deportiva</option>
+            <option value="Deporte19">Esgrima</option>
+            <option value="Deporte20">Esquí acuático y Wakeboard</option>
+            <option value="Deporte21">Evento completo ecuestre</option>
+            <option value="Deporte22">Fútbol</option>
+            <option value="Deporte23">Gimnasia artística Femenina</option>
+            <option value="Deporte24">Gimnasia artística Masculina</option>
+            <option value="Deporte25">Gimnasia rítmica</option>
+            <option value="Deporte26">Gimnasia trampolín</option>
+            <option value="Deporte27">Golf</option>
+            <option value="Deporte28">Hockey césped</option>
+            <option value="Deporte29">Judo</option>
+            <option value="Deporte30">Karate</option>
+            <option value="Deporte31">Levantamiento de pesas</option>
+            <option value="Deporte32">Lucha</option>
+            <option value="Deporte33">Maratón</option>
+            <option value="Deporte34">Marcha</option>
+            <option value="Deporte35">Mountain Bike</option>
+            <option value="Deporte36">Natación</option>
+            <option value="Deporte37">Natación artística</option>
+            <option value="Deporte38">Natación en Aguas abiertas</option>
+            <option value="Deporte39">Patinaje artístico</option>
+            <option value="Deporte40">Patinaje velocidad</option>
+            <option value="Deporte41">Pentatlón moderno</option>
+            <option value="Deporte42">Pelota vasca</option>
+            <option value="Deporte43">Polo acuático</option>
+            <option value="Deporte44">Racquetball</option>
+            <option value="Deporte45">Remo</option>
+            <option value="Deporte46">Rugby 7</option>
+            <option value="Deporte47">Salto ecuestre</option>
+            <option value="Deporte48">Skateboarding</option>
+            <option value="Deporte49">Sóftbol</option>
+            <option value="Deporte50">Squash</option>
+            <option value="Deporte51">Surf</option>
+            <option value="Deporte52">Taekwondo</option>
+            <option value="Deporte53">Tenis</option>
+            <option value="Deporte54">Tenis de mesa</option>
+            <option value="Deporte55">Tiro</option>
+            <option value="Deporte56">Tiro con arco</option>
+            <option value="Deporte57">Triatlón</option>
+            <option value="Deporte58">Vela</option>
+            <option value="Deporte59">Vóleibol</option>
+            <option value="Deporte60">Vóleibol playa</option>
+        </select>
+
+        <label for="region">Región en donde vive:</label>
+        <select id="region" name="region" onchange="updateComunas();" required>
+            <!-- Populate with your region options -->
+            <!-- Example: <option value="Region1">Region1</option> -->
+        </select>
+
+        <label for="comuna">Comuna donde vive:</label>
+        <select id="comuna" name="comuna" required>
+            <!-- Comunas will be populated based on the selected region using JavaScript -->
+        </select>
+
+        <button type="submit">Registrar Hincha</button>
+    </form>
+</body>
+</html>
