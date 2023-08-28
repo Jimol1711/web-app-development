@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Hincha</title>
+    <link rel="stylesheet" type="text/css" href="./agregar-hincha.css">
+    <script src="./agregar-hincha.js"></script>
+</head>
+<body>
+    <form>
+        <label for="deporte">Deporte el cual desea apoyar:</label>
+        <select id="deporte" name="deporte" required>
+        </select>
+
+        <label for="region">Región en donde vive:</label>
+        <select id="region" name="region" onchange="updateComunas();" required>
+        </select>
+
+        <label for="comuna">Comuna donde vive:</label>
+        <select id="comuna" name="comuna" required>
+            <!-- Comunas will be populated based on the selected region using JavaScript -->
+        </select>
+
+        <label for="transporte">Modo de transporte:</label>
+        <select id="transporte" name="transporte" required>
+            <!-- Transporte will be populated based on the selected region using JavaScript -->
+        </select>
+
+        <label for="texto">Ingresa un texto:</label>
+        <input type="text" id="texto" name="texto" minlength="3" maxlength="80" required>
+        <input type="submit" value="Enviar">
+
+        <button type="submit">Registrar Hincha</button>
+    </form>
+</body>
+</html>
