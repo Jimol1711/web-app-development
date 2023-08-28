@@ -1,4 +1,5 @@
-{
+// esta estructura la saque de un archivo Json en el siguiente link: https://gist.github.com/juanbrujo/0fd2f4d126b3ce5a95a7dd1f28b3d8dd#file-comunas-regiones-json 
+const regiones_y_comunas = {
     "regiones": [
         {
             "region": "Arica y Parinacota",

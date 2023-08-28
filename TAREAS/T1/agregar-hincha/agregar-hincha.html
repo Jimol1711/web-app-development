@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Hincha</title>
     <link rel="stylesheet" type="text/css" href="./agregar-hincha.css">
-    <script src="./agregar-hincha.js"></script>
 </head>
 <body>
     <form>
@@ -14,10 +13,12 @@
         </select>
 
         <label for="region">Región en donde vive:</label>
-        <select id="region" name="region" onchange="updateComunas();" required>
+            <option value="" disabled selected>Seleccione una Región</option>
+        <select id="region" name="region">
         </select>
 
         <label for="comuna">Comuna donde vive:</label>
+            <option value="" disabled selected>Seleccione una Comuna</option>
         <select id="comuna" name="comuna" required>
             <!-- Comunas will be populated based on the selected region using JavaScript -->
         </select>
@@ -33,5 +34,6 @@
 
         <button type="submit">Registrar Hincha</button>
     </form>
+    <script src="./agregar-hincha.js"></script>
 </body>
 </html>

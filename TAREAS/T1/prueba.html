@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selector de Estudiantes</title>
+</head>
+<body>
+  <h1>Selector de Estudiantes</h1>
+
+  <label for="nombre-selector">Selecciona un estudiante:</label>
+  <select id="nombre-selector"></select>
+
+  <br>
+
+  <label for="cursos-selector">Cursos del estudiante:</label>
+  <select id="cursos-selector"></select>
+
+  <script>
+    const data = {
+      estudiantes: [
+        {
+          nombre: "Juan",
+          cursos: ["matemáticas", "computación"]
+        },
+        {
+          nombre: "Pedro",
+          cursos: ["matemáticas", "Inglés"]
+        }
+        // Agrega más estudiantes aquí...
+      ]
+    };
+
+    const nombreSelector = document.getElementById("nombre-selector");
+    const cursosSelector = document.getElementById("cursos-selector");
+
+    // Agregar opciones al selector de nombres
+    data.estudiantes.forEach(estudiante => {
+      const option = document.createElement("option");
+      option.value = estudiante.nombre;
+      option.text = estudiante.nombre;
+      nombreSelector.add(option);
+    });
+
+    nombreSelector.addEventListener("change", () => {
+      const nombreSeleccionado = nombreSelector.value;
+      const estudianteSeleccionado = data.estudiantes.find(estudiante => estudiante.nombre === nombreSeleccionado);
+
+      cursosSelector.innerHTML = "";
+      estudianteSeleccionado.cursos.forEach(curso => {
+        const option = document.createElement("option");
+        option.text = curso;
+        cursosSelector.add(option);
+      });
+    });
+  </script>
+</body>
+</html>
+
