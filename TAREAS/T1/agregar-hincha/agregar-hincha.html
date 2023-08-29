@@ -13,24 +13,33 @@
         </select>
 
         <label for="region">Región en donde vive:</label>
-            <option value="" disabled selected>Seleccione una Región</option>
-        <select id="region" name="region">
+        <select id="region" name="region" required>
         </select>
 
         <label for="comuna">Comuna donde vive:</label>
-            <option value="" disabled selected>Seleccione una Comuna</option>
         <select id="comuna" name="comuna" required>
-            <!-- Comunas will be populated based on the selected region using JavaScript -->
         </select>
 
         <label for="transporte">Modo de transporte:</label>
         <select id="transporte" name="transporte" required>
-            <!-- Transporte will be populated based on the selected region using JavaScript -->
         </select>
 
-        <label for="texto">Ingresa un texto:</label>
-        <input type="text" id="texto" name="texto" minlength="3" maxlength="80" required>
+        <label for="texto">Ingrese su nombre:</label>
+        <input type="text" id="texto" name="texto" minlength="3" maxlength="80">
         <input type="submit" value="Enviar">
+
+        <label for="texto">Ingrese su Email de contacto:</label>
+        <input type="text" id="texto" name="texto" maxlength="80">
+        <input type="submit" value="Enviar">
+
+        <label for="texto">Ingrese su número de celular de contacto:</label>
+        <input type="text" id="texto" name="texto" maxlength="80">
+        <input type="submit" value="Enviar">
+
+        <label for="texto">¿Algún comentario adicional?:</label>
+        <input type="text" id="texto" name="texto" maxlength="80">
+        <input type="submit" value="Enviar">
+
 
         <button type="submit">Registrar Hincha</button>
     </form>
