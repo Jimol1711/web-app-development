@@ -193,20 +193,27 @@ transportes.forEach(transporte => {
 // Validación de Modo de Transporte
 
 // Validación del nombre de Hincha
+const validateName = (name) => {
+    if(!name) return false;
+    let lenghtValid = name.lenght >= 3 && name.lenght <= 80;
+    // Validacion con expresión regular. Permite un mínimo de dos palabras separadas por espacios y un máximo de tres.
+    let re = /^[A-Za-z]+( [A-Za-z]+){1,2}$/;
+    let formatValid = re.test(name);
+    return lenghtValid && formatValid;
+};
 
 // Validación del email
-const validateEmail = (email_addr) => {
-    if(!email_addr) return false;
-    let lenghtValid = email_addr.lenght > 15;
+const validateEmail = (email) => {
+    if(!email) return false;
+    let lenghtValid = email.lenght > 15;
     // Validacion con expresión regular
     let re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    let formatValid = re.test(email_addr);
+    let formatValid = re.test(email);
     return lenghtValid && formatValid;
 };
 
 // Validación del número de teléfono
 const validatePhonenumber = (phone_nmbr) => {
-    if(!phone_nmbr) return false;
     let lenghtValid = phone_nmbr.lenght <= 15 && phone_nmbr.lenght >= 9;
     // Validacion con expresión regular. Permite solo nùmero con un signo +, dos digitos como codigo de pais, un digito como codigo de zona y 8 digitos como el número en sí.
     // Es un formato que probablemente no aplique a todos los paises, pero si aplica a algunos (como Chile) y lo dejo para generalizar lo más posible.
@@ -219,9 +226,10 @@ const validatePhonenumber = (phone_nmbr) => {
 
 // Validación del formulario
 const validateForm = () => {
-    let myForm = document.forms["agregar-hincha"];
-    let email = myForm["email_addr"].value;
-    let phoneNumber = myForm["phone_nmbr"].value;
+    let Form = document.forms["agregar-hincha"];
+    let name = Form["name"].value;
+    let email = Form["email"].value;
+    let phoneNumber = Form["phone_nmbr"].value;
 
     let invalidInputs = [];
     let isValid = true;
@@ -231,10 +239,13 @@ const validateForm = () => {
     };
 
     // Validation logic
+    if(!validateName(name)) {
+        setInvalidInput("Nombre");
+    }
     if (!validateEmail(email)) {
         setInvalidInput("Email");
     }
-    if(!validatePhoneNumber(phoneNumber)) {
+    if(!validatePhonenumber(phoneNumber)) {
         setInvalidInput("Número Telefónico");
     }
 
@@ -253,7 +264,7 @@ const validateForm = () => {
         validationMessageElem.innerText = "Los siguientes campos son inválidos:";
         validationBox.hidden = false;
     } else {
-        myForm.submit();
+        Form.submit();
     }
 };
 
