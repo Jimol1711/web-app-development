@@ -7,23 +7,36 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0; /* Eliminar el margen predeterminado del body */
         }
         header {
             background-color: #333;
             color: #fff;
             padding: 10px;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
         nav {
             display: flex;
             justify-content: center;
             background-color: #444;
             padding: 10px;
+            position: relative;
+            z-index: 1;
         }
         nav a {
             color: #fff;
             text-decoration: none;
             margin: 0 20px;
+        }
+        .image-container {
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            margin-top: -250px;
         }
     </style>
 </head>
@@ -37,5 +50,8 @@
         <a href="ver-hinchas.html">Ver Listado de Hinchas</a>
         <a href="ver-artesanos.html">Ver Listado de Artesanos</a>
     </nav>
+    <div class="image-container">
+        <img src="santiago.jpg" alt="Imagen de los Juegos Panamericanos" width="1585" height="200">
+    </div>
 </body>
 </html>
