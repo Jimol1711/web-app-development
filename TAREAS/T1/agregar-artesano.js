@@ -123,12 +123,24 @@ artesanias.forEach(artesania => {
 /* Validaciones */
 
 // Validación de Región
+const validateRegion = (region) => {
+    if(!region) return false;
+};
 
 // Validación de Comuna
+const validateComuna = (comuna) => {
+    if(!comuna) return false;
+};
 
 // Validación del tipo de Artesanía
+const validateTypeartesania = (type) => {
+    if(!type) return false;
+};
 
 // Validación de la descripción de la Artesanía
+const validateDescription = (description) => {
+
+};
 
 // Validación de las imagenes de la artesanía
 const validateFiles = (artesania_imgs) => {
@@ -143,6 +155,9 @@ const validateFiles = (artesania_imgs) => {
 };
 
 // Validación del nombre del Artesano
+const validateName = (name) => {
+    if(!name) return false;
+};
 
 // Validación del email
 const validateEmail = (email_addr) => {
@@ -170,7 +185,7 @@ const validateForm = () => {
     let myForm = document.forms["agregar-artesano"];
     let email = myForm["email_addr"].value;
     let phoneNumber = myForm["phone_nmbr"].value;
-    let files = myForm["artesania_imgs"].value;
+    let files = myForm["artesania_imgs"].files;
 
     let invalidInputs = [];
     let isValid = true;

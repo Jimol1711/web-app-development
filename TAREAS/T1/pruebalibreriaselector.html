@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+
+        <title>Document</title>
+    </head>
+    <body>
+        <form action="" method="get">
+            <div>
+                <label for="country">Countries</label>
+                <select name="countries" id="countries" multiple>
+                    <option value="1">Afghanistan</option>
+                    <option value="2">Australia</option>
+                    <option value="3">Germany</option>
+                    <option value="4">Canada</option>
+                    <option value="5">Russia</option>
+                </select>
+            </div>
+        </form>
+    </body>
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js">
+        new MultiSelectTag('countries')
+    </script>
+</html>

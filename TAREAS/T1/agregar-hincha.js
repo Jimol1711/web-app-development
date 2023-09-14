@@ -137,6 +137,7 @@ const transportes = [
     "locomoción pública"
 ]
 
+// Variables para los selectores
 const deporteSelecter = document.getElementById("deporte");
 const regionSelecter = document.getElementById("region");
 const comunaSelecter = document.getElementById("comuna");
@@ -149,6 +150,8 @@ deportes.forEach(deporte => {
     option.value = deporte;
     deporteSelecter.appendChild(option);
   });
+
+new MultiSelectTag('deporte')
 
 // Agregar opciones al selector de regiones
 regiones_y_comunas.regiones.forEach(region => {
@@ -185,12 +188,24 @@ transportes.forEach(transporte => {
 /* Validaciones */
 
 // Validación de Deporte
+const validateSport = (sport) => {
+    if(!sport) return false;
+};
 
 // Validación de Región
+const validateRegion = (region) => {
+    if(!region) return false;
+};
 
 // Validación de Comuna
+const validateComuna = (comuna) => {
+    if(!comuna) return false;
+};
 
 // Validación de Modo de Transporte
+const validateTransport = (transport) => {
+    if(!transport) return false;
+};
 
 // Validación del nombre de Hincha
 const validateName = (name) => {
@@ -205,11 +220,11 @@ const validateName = (name) => {
 // Validación del email
 const validateEmail = (email) => {
     if(!email) return false;
-    let lenghtValid = email.lenght > 15;
+    let lengthValid = email.length > 15;
     // Validacion con expresión regular
     let re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     let formatValid = re.test(email);
-    return lenghtValid && formatValid;
+    return lengthValid && formatValid;
 };
 
 // Validación del número de teléfono
@@ -223,14 +238,23 @@ const validatePhonenumber = (phone_nmbr) => {
 };
 
 // Validación de los comentarios
+const validateComments = (comments) => {
+
+};
 
 // Validación del formulario
 const validateForm = () => {
     let Form = document.forms["agregar-hincha"];
+    let sport = Form["deporte"].value;
+    let region = Form["region"].value;
+    let comuna = Form["comuna"].value;
+    let transport = Form["transporte"].value;
     let name = Form["name"].value;
     let email = Form["email"].value;
     let phoneNumber = Form["phone_nmbr"].value;
+    let comments = Form["comentarios"].value;
 
+    // Lista con inputs inválidos
     let invalidInputs = [];
     let isValid = true;
     const setInvalidInput = (inputName) => {
@@ -239,6 +263,18 @@ const validateForm = () => {
     };
 
     // Validation logic
+    if(!validateSport(sport)) {
+        setInvalidInput("Deporte seleccionado");
+    };
+    if(!validateRegion(region)) {
+        setInvalidInput("Región seleccionada");
+    };
+    if(!validateComuna(comuna)) {
+        setInvalidInput("Comuna seleccionada");
+    };
+    if(!validateTransport(transport)) {
+        setInvalidInput("Modo de transporte seleccionado");
+    };
     if(!validateName(name)) {
         setInvalidInput("Nombre");
     }
@@ -246,6 +282,9 @@ const validateForm = () => {
         setInvalidInput("Email");
     }
     if(!validatePhonenumber(phoneNumber)) {
+        setInvalidInput("Número Telefónico");
+    }
+    if(!validateComments(comments)) {
         setInvalidInput("Número Telefónico");
     }
 
