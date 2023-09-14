@@ -173,8 +173,7 @@ const validateEmail = (email_addr) => {
 const validatePhoneNumber = (phone_nmbr) => {
     if(!phone_nmbr) return false;
     let lenghtValid = phone_nmbr.lenght <= 15 && phone_nmbr.lenght >= 9;
-    // Validacion con expresión regular. Permite solo nùmero con un signo +, dos digitos como codigo de pais, un digito como codigo de zona y 8 digitos como el número en sí.
-    // Es un formato que probablemente no aplique a todos los paises, pero si aplica a algunos (como Chile) y lo dejo para generalizar lo más posible.
+    // Validacion con expresión regular.
     let re = /^\+\d{2}\d{1}\d{8}$/; 
     let formatValid = re.test(phone_nmbr);
     return lenghtValid && formatValid;

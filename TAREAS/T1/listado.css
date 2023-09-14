@@ -55,3 +55,8 @@ button {
 button:hover {
     background-color: #555;
 }
+
+a.no-link-style {
+    text-decoration: none;
+    color: black;
+}
