@@ -10,28 +10,28 @@
     <body>
         <div class="container">
             <div id = "val-box" hidden>
-                <h2 id="val-msg"></h2>
+                <h2 id="val-msg">Fallo Validación</h2>
                 <ul id="val-list"></ul>
             </div>
             <form class="formulario" id="agregar-hincha" name="agregar-hincha" method="post" enctype="multipart/form-data">
                 <label for="deporte">Deporte el cual desea apoyar:</label>
-                <select id="deporte" name="deporte" multiple required>
-                    <option value="defecto">Seleccione un Deporte</option>
+                <select id="deporte" name="deporte" required>
+                    <option label="Seleccione entre uno y tres Deportes"></option>
                 </select>
 
                 <label for="region">Región en donde vive:</label>
                 <select id="region" name="region" required>
-                    <option value="defecto">Seleccione una Región</option>
+                    <option label="Seleccione una Región"></option>
                 </select>
 
                 <label for="comuna">Comuna donde vive:</label>
                 <select id="comuna" name="comuna" required>
-                    <option value="defecto">Seleccione una Comuna</option>
+                    <option label="Seleccione una Comuna"></option>
                 </select>
 
                 <label for="transporte">Modo de transporte:</label>
                 <select id="transporte" name="transporte" required>
-                    <option value="defecto">Seleccione un modo de transporte</option>
+                    <option label="Seleccione un modo de transporte"></option>
                 </select>
 
                 <div id="name-input" class="grupo-input">

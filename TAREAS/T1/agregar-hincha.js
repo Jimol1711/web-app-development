@@ -151,7 +151,16 @@ deportes.forEach(deporte => {
     deporteSelecter.appendChild(option);
   });
 
-new MultiSelectTag('deporte')
+// Manejador de evento para la validación
+deporteSelecter.addEventListener("change", function() {
+    const selectedOptions = Array.from(this.selectedOptions);
+    if (selectedOptions.length > 3) {
+        alert("Debe seleccionar como máximo tres deportes.");
+        selectedOptions.slice(3).forEach(option => {
+            option.selected = false;
+        });
+    }
+});
 
 // Agregar opciones al selector de regiones
 regiones_y_comunas.regiones.forEach(region => {

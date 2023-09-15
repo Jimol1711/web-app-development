@@ -9,23 +9,23 @@
     <body>
         <div class="container">   
             <div id = "val-box" hidden>
-                <h2 id="val-msg"></h2>
+                <h2 id="val-msg">Fallo Validación</h2>
                 <ul id="val-list"></ul>
             </div>
             <form class="formulario" id="agregar-artesano" name="agregar-artesano" method="post" enctype="multipart/form-data">
                 <label for="region">Región de origen:</label>
                 <select id="region" name="region" required>
-                    <option value="defecto">Seleccione una Región</option>
+                    <option label="Seleccione una Región"></option>
                 </select>
 
                 <label for="comuna">Comuna de origen:</label>
                 <select id="comuna" name="comuna" required>
-                    <option value="defecto">Seleccione una Comuna</option>
+                    <option label="Seleccione una Comuna"></option>
                 </select>
 
                 <label for="artesania">Tipo de artesanía que desea vender:</label>
                 <select id="artesania" name="artesania" required>
-                    <option value="defecto">Seleccione un tipo de artesanía</option>
+                    <option value="defecto">Seleccione entre uno y tres tipos</option>
                 </select>
 
                 <label for="descripcion_artesania">Descripción de la artesanía que desea vender:</label>
