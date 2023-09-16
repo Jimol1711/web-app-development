@@ -86,7 +86,6 @@ const artesanias = [
 // Selectores
 const regionSelecter = document.getElementById("region");
 const comunaSelecter = document.getElementById("comuna");
-const artesaniaSelecter = document.getElementById("artesania");
 
 // Agregar opciones al selector de regiones
 regiones_y_comunas.regiones.forEach(region => {
@@ -112,40 +111,81 @@ regionSelecter.addEventListener("change", () => {
     });
   });
 
-// Agregar opciones al selector de artesanias
-artesanias.forEach(artesania => {
-    const option = document.createElement("option");
-    option.text = artesania;
-    option.value = artesania;
-    artesaniaSelecter.appendChild(option);
-  });
+// Selector dinámico de artesanías
+const artesaniaSelecter = document.getElementById("artesania");
+const selectContainer = document.getElementById("select-container");
+let selectCount = 0;
+let select1, select2, select3;
+
+function agregarSelector() {
+    if (selectCount < 3) {
+        const nuevoSelect = document.createElement("select");
+        nuevoSelect.name = "artesania";
+
+        const opcionDefecto = document.createElement("option");
+        opcionDefecto.value = "defecto";
+        opcionDefecto.textContent = "Seleccione una opción";
+        nuevoSelect.appendChild(opcionDefecto);
+
+        artesanias.forEach((artesania) => {
+            const opcionesSeleccionadas = [select1, select2, select3].map((select) => select ? select.value : null);
+            if (!opcionesSeleccionadas.includes(artesania)) {
+                const opcion = document.createElement("option");
+                opcion.value = artesania;
+                opcion.textContent = artesania;
+                nuevoSelect.appendChild(opcion);
+            }
+        });
+
+        selectContainer.appendChild(nuevoSelect);
+        selectCount++;
+
+        if (selectCount === 1) {
+            select1 = nuevoSelect;
+        } else if (selectCount === 2) {
+            select2 = nuevoSelect;
+        } else if (selectCount === 3) {
+            select3 = nuevoSelect;
+        }
+
+        if (selectCount === 3) {
+            // Deshabilitar la creación de más selectores después de tres
+            selectContainer.removeEventListener("change", agregarSelector);
+        }
+    }
+}
+
+// Agregar un selector inicial
+agregarSelector();
+  
+// Agregar un evento para crear un nuevo selector al seleccionar una opción
+selectContainer.addEventListener("change", agregarSelector);
 
 /* Validaciones */
 
 // Validación de Región
 const validateRegion = (region) => {
-    if(!region) return false;
+    if (region.value !== "defecto") {
+        return true; // Invalid
+    } else {
+        return false; // Valid
+    }
 };
 
 // Validación de Comuna
 const validateComuna = (comuna) => {
-    if(!comuna) return false;
+    if(comuna.value == "defecto") return false;
 };
 
 // Validación del tipo de Artesanía
 const validateTypeartesania = (type) => {
-    if(!type) return false;
-};
-
-// Validación de la descripción de la Artesanía
-const validateDescription = (description) => {
-
+    if(type.value == "defecto") return false;
 };
 
 // Validación de las imagenes de la artesanía
 const validateFiles = (artesania_imgs) => {
     if (!artesania_imgs) return false;
-    let lengthValid = 1 <= artesania_imgs.lenght && artesania_imgs <= 3;
+    let lengthValid = 1 <= artesania_imgs.length && artesania_imgs.length <= 3;
     let typeValid = true;
     for (const img of artesania_imgs) {
         let fileFamily = file.type.split("/")[0];
@@ -157,51 +197,68 @@ const validateFiles = (artesania_imgs) => {
 // Validación del nombre del Artesano
 const validateName = (name) => {
     if(!name) return false;
+    let lengthValid = 3 <= name.length && name.length <= 80;
+    return lengthValid;
 };
 
 // Validación del email
-const validateEmail = (email_addr) => {
-    if(!email_addr) return false;
-    let lenghtValid = email_addr.lenght > 15;
+const validateEmail = (email) => {
+    if(!email) return false;
+    let lengthValid = email-length <= 30 && email.length >= 15;
     // Validacion con expresión regular
-    let re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    let formatValid = re.test(email_addr);
-    return lenghtValid && formatValid;
+    let re = /^[\w.]+@[a-zA-Z]+?\.[a-zA-Z]{2,3}$/;
+    let formatValid = re.test(email);
+    return lengthValid && formatValid;
 };
 
 // Validación del número de teléfono
-const validatePhoneNumber = (phone_nmbr) => {
-    if(!phone_nmbr) return false;
-    let lenghtValid = phone_nmbr.lenght <= 15 && phone_nmbr.lenght >= 9;
+const validatePhoneNumber = (phone) => {
+    let lengthValid = phone.length <= 15;
     // Validacion con expresión regular.
-    let re = /^\+\d{2}\d{1}\d{8}$/; 
-    let formatValid = re.test(phone_nmbr);
-    return lenghtValid && formatValid;
+    let re = /^[0-9]+$/; 
+    let formatValid = re.test(phone);
+    return lengthValid && formatValid;
 };
 
 // Validación del formulario
 const validateForm = () => {
     let myForm = document.forms["agregar-artesano"];
-    let email = myForm["email_addr"].value;
-    let phoneNumber = myForm["phone_nmbr"].value;
+    let region = myForm["region"].value;
+    let comuna = myForm["comuna"].value;
+    let typeartesania = myForm["artesania"].value;
     let files = myForm["artesania_imgs"].files;
+    let name = myForm["nombre"].value;
+    let email = myForm["email"].value;
+    let phoneNumber = myForm["phone"].value;
 
     let invalidInputs = [];
     let isValid = true;
     const setInvalidInput = (inputName) => {
         invalidInputs.push(inputName);
-        isValid &&= false;
+        isValid = false;
     };
 
     // Validation logic
+    if (!validateRegion(region)) {
+        setInvalidInput("Región");
+     }
+    if (!validateComuna(comuna)) {
+        setInvalidInput("Comuna");
+     }
+    if (!validateTypeartesania(typeartesania)) {
+        setInvalidInput("Tipo de Artesanía");
+     }
+    if (!validateFiles(files)) {
+        setInvalidInput("Fotos");
+    }
+    if(!validateName(name)) {
+        setInvalidInput("Nombre");
+    }
     if (!validateEmail(email)) {
         setInvalidInput("Email");
     }
     if(!validatePhoneNumber(phoneNumber)) {
         setInvalidInput("Número Telefónico");
-    }
-    if (!validateFiles(files)) {
-        setInvalidInput("Imágenes");
     }
 
     // Display validation
@@ -216,12 +273,18 @@ const validateForm = () => {
             listElement.innerText = input;
             validationListElem.append(listElement);
         }
-        validationMessageElem.innerText = "Los siguientes campos son inválidos:";
+        validationMessageElem.innerText = "Por favor indique una opción válida para:";
         validationBox.hidden = false;
     } else {
-        myForm.submit();
+        // Move the confirmation box outside the if (!isValid) block
+        let confirmResponse = confirm("¿Confirma el registro de este artesano?");
+        
+        if (confirmResponse) {
+            alert("Hemos recibido el registro del artesano. ¡Gracias!");
+            window.location.href = "index.html";
+        }
     }
 };
 
-let submitBtn = document.getElementById("submit-btn");
+let submitBtn = document.getElementById("envio");
 submitBtn.addEventListener("click", validateForm);

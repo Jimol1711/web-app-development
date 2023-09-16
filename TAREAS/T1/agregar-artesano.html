@@ -13,45 +13,56 @@
                 <ul id="val-list"></ul>
             </div>
             <form class="formulario" id="agregar-artesano" name="agregar-artesano" method="post" enctype="multipart/form-data">
-                <label for="region">Región de origen:</label>
-                <select id="region" name="region" required>
-                    <option label="Seleccione una Región"></option>
-                </select>
-
-                <label for="comuna">Comuna de origen:</label>
-                <select id="comuna" name="comuna" required>
-                    <option label="Seleccione una Comuna"></option>
-                </select>
-
-                <label for="artesania">Tipo de artesanía que desea vender:</label>
-                <select id="artesania" name="artesania" required>
-                    <option value="defecto">Seleccione entre uno y tres tipos</option>
-                </select>
-
-                <label for="descripcion_artesania">Descripción de la artesanía que desea vender:</label>
-                <textarea name="descripcion_artesania" rows="4" cols="50"></textarea>
-
-                <label for="myfile">Fotos(s) de su artesanía:</label>
-                <input type="file" id="artesania_imgs" name="artesania_imgs" multiple accept="image/*,.pdf" required>
-
-                <div id="name-input" class="grupo-input">
-                    <label for="nombre">Ingrese su nombre:</label>
-                    <input type="text" id="nombre" name="nombre" minlength="3" maxlength="80" required>
+                <div id="region-selection" class="grupo-input">
+                    <label for="region">Región de origen:</label>
+                    <select id="region" name="region" required>
+                        <option value="defecto" label="Seleccione una Región"></option>
+                    </select>
                 </div>
 
-                <div id="email-input" class="grupo-input">
+                <div id="comuna-selection" class="grupo-input">
+                    <label for="comuna">Comuna de origen:</label>
+                    <select id="comuna" name="comuna" required>
+                        <option value="defecto" label="Seleccione una Comuna"></option>
+                    </select>
+                </div>
+
+                <div id="select-container">
+                    <label for="artesania">Tipo de artesanía que desea vender:</label>
+                </div>
+
+                <div id="descripcion" class="grupo-input">
+                    <label for="descripcion_artesania">Descripción de la artesanía que desea vender (opcional):</label>
+                    <textarea name="descripcion_artesania" rows="4" cols="50"></textarea>
+                </div>
+
+                <div id="artesania_files" class="grupo-input">
+                    <label for="myfile">Fotos(s) de su artesanía:</label>
+                    <input type="file" id="artesania_imgs" name="artesania_imgs" multiple accept="image/*,.pdf" required>
+                </div>
+                        
+                <div id="name-input" class="grupo-input">
+                    <label for="nombre">Ingrese su nombre:</label>
+                    <input id="nombre" name="nombre" type="text" minlength="4" maxlength="80" required>
+                </div>
+
+                <div id="mail-input" class="grupo-input">
                     <label for="texto">Ingrese su Email de contacto:</label>
-                    <input type="email" id="email_addr" name="email_addr" maxlength="30" required>
+                    <input id="email" name="email" type="email" maxlength="30" required>
                 </div>
 
                 <div id="phone-input" class="grupo-input">
                     <label for="texto">Ingrese su número de celular de contacto:</label>
-                    <input type="text" id="phone_nmbr" name="phone_nmbr" maxlength="15">
+                    <input id="phone" name="phone" type="text" maxlength="15">
                 </div>
 
-                <button id="submit-btn" type="button" onclick="validateForm()">Registrar Artesano</button>
+                <div>
+                    <button id="envio" type="button" onclick="validateForm()">
+                        Registrar Artesano
+                    </button>
+                </div>
             </form>
         </div>
-        <script src="./agregar-artesano.js"></script>
+        <script lang="javascript" src="./agregar-artesano.js"></script>
     </body>
 </html>

@@ -138,29 +138,60 @@ const transportes = [
 ]
 
 // Variables para los selectores
-const deporteSelecter = document.getElementById("deporte");
 const regionSelecter = document.getElementById("region");
 const comunaSelecter = document.getElementById("comuna");
 const transporteSelecter = document.getElementById("transporte");
 
-// Agregar opciones al selector de deportes
-deportes.forEach(deporte => {
-    const option = document.createElement("option");
-    option.text = deporte;
-    option.value = deporte;
-    deporteSelecter.appendChild(option);
-  });
+// Selector dinámico de deportes
+const deporteSelecter = document.getElementById("deporte");
+const selectContainer = document.getElementById("select-container");
+let selectCount = 0;
+let select1, select2, select3;
 
-// Manejador de evento para la validación
-deporteSelecter.addEventListener("change", function() {
-    const selectedOptions = Array.from(this.selectedOptions);
-    if (selectedOptions.length > 3) {
-        alert("Debe seleccionar como máximo tres deportes.");
-        selectedOptions.slice(3).forEach(option => {
-            option.selected = false;
+// Agregar opciones al selector de deportes
+function agregarSelector() {
+    if (selectCount < 3) {
+        const nuevoSelect = document.createElement("select");
+        nuevoSelect.name = "deporte";
+
+        const opcionDefecto = document.createElement("option");
+        opcionDefecto.value = "defecto";
+        opcionDefecto.textContent = "Seleccione una opción";
+        nuevoSelect.appendChild(opcionDefecto);
+
+        deportes.forEach((deporte) => {
+            const opcionesSeleccionadas = [select1, select2, select3].map((select) => select ? select.value : null);
+            if (!opcionesSeleccionadas.includes(deporte)) {
+                const opcion = document.createElement("option");
+                opcion.value = deporte;
+                opcion.textContent = deporte;
+                nuevoSelect.appendChild(opcion);
+            }
         });
+
+        selectContainer.appendChild(nuevoSelect);
+        selectCount++;
+
+        if (selectCount === 1) {
+            select1 = nuevoSelect;
+        } else if (selectCount === 2) {
+            select2 = nuevoSelect;
+        } else if (selectCount === 3) {
+            select3 = nuevoSelect;
+        }
+
+        if (selectCount === 3) {
+            // Deshabilitar la creación de más selectores después de tres
+            selectContainer.removeEventListener("change", agregarSelector);
+        }
     }
-});
+}
+
+// Agregar un selector inicial
+agregarSelector();
+  
+// Agregar un evento para crear un nuevo selector al seleccionar una opción
+selectContainer.addEventListener("change", agregarSelector);
 
 // Agregar opciones al selector de regiones
 regiones_y_comunas.regiones.forEach(region => {
@@ -219,11 +250,11 @@ const validateTransport = (transport) => {
 // Validación del nombre de Hincha
 const validateName = (name) => {
     if(!name) return false;
-    let lenghtValid = name.lenght >= 3 && name.lenght <= 80;
+    let lengthValid = name.length >= 3 && name.length <= 80;
     // Validacion con expresión regular. Permite un mínimo de dos palabras separadas por espacios y un máximo de tres.
     let re = /^[A-Za-z]+( [A-Za-z]+){1,2}$/;
     let formatValid = re.test(name);
-    return lenghtValid && formatValid;
+    return lengthValid && formatValid;
 };
 
 // Validación del email
@@ -238,11 +269,11 @@ const validateEmail = (email) => {
 
 // Validación del número de teléfono
 const validatePhonenumber = (phone_nmbr) => {
-    let lenghtValid = phone_nmbr.lenght <= 15 && phone_nmbr.lenght >= 9;
+    let lengthValid = phone_nmbr.length <= 15 && phone_nmbr.length >= 9;
     // Validacion con expresión regular.
     let re = /^\+\d{2}\d{1}\d{8}$/; 
     let formatValid = re.test(phone_nmbr);
-    return lenghtValid && formatValid;
+    return lengthValid && formatValid;
 };
 
 // Validación de los comentarios
@@ -311,7 +342,13 @@ const validateForm = () => {
         validationMessageElem.innerText = "Los siguientes campos son inválidos:";
         validationBox.hidden = false;
     } else {
-        Form.submit();
+        // Muestra un mensaje de confirmación
+        let confirmResponse = confirm("¿Confirma el registro de este hincha?");
+        
+        if (confirmResponse) {
+            // Si el usuario confirma, muestra el mensaje de agradecimiento
+            alert("Hemos recibido el registro de Hincha. Muchas gracias.");
+        }    
     }
 };
 

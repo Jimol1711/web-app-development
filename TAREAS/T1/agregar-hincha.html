@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Registrar Hincha</title>
         <link rel="stylesheet" type="text/css" href="./registro.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
     </head>
     <body>
         <div class="container">
@@ -14,25 +13,30 @@
                 <ul id="val-list"></ul>
             </div>
             <form class="formulario" id="agregar-hincha" name="agregar-hincha" method="post" enctype="multipart/form-data">
-                <label for="deporte">Deporte el cual desea apoyar:</label>
-                <select id="deporte" name="deporte" required>
-                    <option label="Seleccione entre uno y tres Deportes"></option>
-                </select>
+                <div id="select-container">
+                    <label for="deporte">Deporte que desea apoyar:</label>
+                </div>
 
-                <label for="region">Región en donde vive:</label>
-                <select id="region" name="region" required>
-                    <option label="Seleccione una Región"></option>
-                </select>
+                <div id="region-selection" class="grupo-input">
+                    <label for="region">Región en donde vive:</label>
+                    <select id="region" name="region" required>
+                        <option value="defecto" label="Seleccione una Región"></option>
+                    </select>
+                </div>
 
-                <label for="comuna">Comuna donde vive:</label>
-                <select id="comuna" name="comuna" required>
-                    <option label="Seleccione una Comuna"></option>
-                </select>
+                <div id="comuna-selection" class="grupo-input">
+                    <label for="comuna">Comuna donde vive:</label>
+                    <select id="comuna" name="comuna" required>
+                        <option value="defecto" label="Seleccione una Comuna"></option>
+                    </select>
+                </div>
 
-                <label for="transporte">Modo de transporte:</label>
-                <select id="transporte" name="transporte" required>
-                    <option label="Seleccione un modo de transporte"></option>
-                </select>
+                <div id="transporte-selection" class="grupo-input">
+                    <label for="transporte">Modo de transporte:</label>
+                    <select id="transporte" name="transporte" required>
+                        <option value="defecto" label="Seleccione un modo de transporte"></option>
+                    </select>
+                </div>
 
                 <div id="name-input" class="grupo-input">
                     <label for="name">Ingrese su nombre:</label>
@@ -60,6 +64,8 @@
             </form>
         </div>
         <script src="./agregar-hincha.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js">
+            new MultiSelectTag('deporte')
+        </script>
     </body>
 </html>
