@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registrar Artesano</title>
+        <link rel="stylesheet" type="text/css" href="./registro.css">
+    </head>
+    <body>
+        <div class="container">   
+            <div id = "val-box" hidden>
+                <h2 id="val-msg">Fallo Validación</h2>
+                <ul id="val-list"></ul>
+            </div>
+            <form class="formulario" id="agregar-artesano" name="agregar-artesano" method="post" enctype="multipart/form-data">
+                <div id="region-selection" class="grupo-input">
+                    <label for="region">Región de origen:</label>
+                    <select id="region" name="region" required>
+                        <option value="" disabled selected>Seleccione una Opción</option>
+                    </select>
+                </div>
+
+                <div id="comuna-selection" class="grupo-input">
+                    <label for="comuna">Comuna de origen:</label>
+                    <select id="comuna" name="comuna" required>
+                        <option value="" disabled selected>Seleccione una Opción</option>
+                    </select>
+                </div>
+
+                <div id="artesania">
+                    <label for="artesanias">Tipo de artesanía que desea vender:</label>
+                    <select id="artesanias" name="artesanias" required hidden>
+                        <option value="" disabled selected>Seleccione una Opción</option>
+                    </select>
+                </div>
+
+                <div class="grupo-input">
+                    <label for="descripcion_artesania">Descripción de la artesanía que desea vender (opcional):</label>
+                    <textarea id="descripcion_artesania" name="descripcion_artesania" rows="4" cols="50"></textarea>
+                </div>
+
+                <div class="grupo-input">
+                    <label for="artesania_files">Foto(s) de su artesanía:</label>
+                    <input type="file" id="artesania_files" name="artesania_files" multiple accept="image/*,.pdf" required>
+                </div>
+                        
+                <div id="name-input" class="grupo-input">
+                    <label for="nombre">Ingrese su nombre:</label>
+                    <input id="nombre" name="nombre" type="text" minlength="4" maxlength="80" required>
+                </div>
+
+                <div class="grupo-input">
+                    <label for="email">Ingrese su Email de contacto:</label>
+                    <input id="email" name="email" type="email" maxlength="30" required>
+                </div>
+
+                <div class="grupo-input">
+                    <label for="phone">Ingrese su número de celular de contacto:</label>
+                    <input id="phone" name="phone" type="text" maxlength="15">
+                </div>
+
+                <div>
+                    <button id="envio" type="button" onclick="validateForm()">
+                        Registrar Artesano
+                    </button>
+                </div>
+            </form>
+        </div>
+        <script src="./agregar-artesano.js"></script>
+    </body>
+</html>
