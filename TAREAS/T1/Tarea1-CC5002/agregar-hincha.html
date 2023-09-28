@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registrar Hincha</title>
+        <link rel="stylesheet" type="text/css" href="./registro.css">
+    </head>
+    <body>
+        <div class="container">
+            <div id = "val-box" hidden>
+                <h2 id="val-msg">Fallo Validación</h2>
+                <ul id="val-list"></ul>
+            </div>
+            <form class="formulario" id="agregar-hincha" name="agregar-hincha" method="post" enctype="multipart/form-data">
+                <div id="select-container">
+                    <label for="deporte">Deporte que desea apoyar:</label>
+                </div>
+
+                <div id="region-selection" class="grupo-input">
+                    <label for="region">Región en donde vive:</label>
+                    <select id="region" name="region" required>
+                        <option value="defecto" label="Seleccione una Región"></option>
+                    </select>
+                </div>
+
+                <div id="comuna-selection" class="grupo-input">
+                    <label for="comuna">Comuna donde vive:</label>
+                    <select id="comuna" name="comuna" required>
+                        <option value="defecto" label="Seleccione una Comuna"></option>
+                    </select>
+                </div>
+
+                <div id="transporte-selection" class="grupo-input">
+                    <label for="transporte">Modo de transporte:</label>
+                    <select id="transporte" name="transporte" required>
+                        <option value="defecto" label="Seleccione un modo de transporte"></option>
+                    </select>
+                </div>
+
+                <div id="name-input" class="grupo-input">
+                    <label for="name">Ingrese su nombre:</label>
+                    <input type="text" id="name" name="name" minlength="3" maxlength="80" required>
+                </div>
+
+                <div id="email-input" class="grupo-input">
+                    <label for="email">Ingrese su Email de contacto:</label>
+                    <input type="email" id="email" name="email" maxlength="30" required>
+                </div>
+
+                <div id="phone-input" class="grupo-input">
+                    <label for="phone">Ingrese su número de celular de contacto:</label>
+                    <input type="text" id="phone" name="phone" maxlength="15">
+                </div>
+
+                <div id="comments-input" class="grupo-input">
+                    <label for="comentarios">¿Algún comentario adicional?:</label>
+                    <input type="text" id="comentarios" name="comentarios" maxlength="80">
+                </div>
+                
+                <div class="buttons">
+                    <button id = "submit-btn" type="button" onclick="validateForm()">Registrar Hincha</button>
+                </div>
+            </form>
+        </div>
+        <script src="./agregar-hincha.js"></script>
+    </body>
+</html>
