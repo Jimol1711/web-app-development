@@ -100,8 +100,7 @@ const nombreInput = document.getElementById("nombre");
 const emailInput = document.getElementById("email");
 const phoneInput = document.getElementById("phone");
 const form = document.getElementById("agregar-artesano");
-
-// ...
+const selectedFiles = document.getElementById("artesania_files").files;
 
 // Agregar evento de clic al botón de envío
 const envioButton = document.getElementById("envio");
@@ -129,23 +128,13 @@ function validateForm() {
         return;
     }
 
-    if (nombreInput.value === "defecto") {
-        displayValidationMessage("Debe seleccionar una comuna.");
-        return;
-    }
-
-    if (comunaSelecter.value === "defecto") {
-        displayValidationMessage("Debe seleccionar una comuna.");
-        return;
-    }
-
-    if (comunaSelecter.value === "defecto") {
-        displayValidationMessage("Debe seleccionar una comuna.");
+    if (selectedFiles.length === 0) {
+        displayValidationMessage("Debe entregar entre 1 a 3 fotos de su Artesanía.");
         return;
     }
 
     // Si todas las validaciones pasan, enviar el formulario
-    form.submit();
+    form.dispatchEvent(new Event("submit"));
 }
 
 // Función para mostrar mensajes de validación
