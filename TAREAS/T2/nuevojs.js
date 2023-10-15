@@ -95,12 +95,15 @@ regionSelecter.addEventListener("change", () => {
   });
 
 // Obtener referencias a los elementos del formulario
+let form_ = document.forms["agregar-artesano"]
+const form = document.getElementById("agregar-artesano");
 const tipoArtesaniaCheckboxes = document.querySelectorAll("input[name='tipo_artesania']");
 const nombreInput = document.getElementById("nombre");
 const emailInput = document.getElementById("email");
 const phoneInput = document.getElementById("phone");
-const form = document.getElementById("agregar-artesano");
-var inputs = document.querySelectorAll('.grupo-input input[type="file"]');
+let archivo1 = form_["artesania_imgs1"].files;
+let archivo2 = form_["artesania_imgs2"].files;
+let archivo3 = form_["artesania_imgs3"].files;
 
 // Agregar evento de clic al botón de envío
 const envioButton = document.getElementById("envio");
@@ -109,7 +112,7 @@ envioButton.addEventListener("click", validateForm);
 // Función para validar el formulario
 function validateForm() {
     // Resetear mensajes de validación anteriores
-    resetValidationMessages();
+    //resetValidationMessages();
 
     // Validar condiciones
     if (regionSelecter.value === "defecto") {
@@ -128,12 +131,12 @@ function validateForm() {
         return;
     }
 
-    var archivosIngresados = true;
-    inputs.forEach(function(input) {
-        if (input.files.length < 1 || input.files.length > 3) {
-            archivosIngresados = false;
-        }
-    });
+    if (archivo1.lenght == 1 || archivo2.length == 1 || archivo3.length == 1) {
+        var archivosIngresados = true; 
+    } else {
+        var archivosIngresados = false;
+    }
+    
     if (!archivosIngresados) {
         alert("Debe entregar entre 1 a 3 fotos de su Artesanía.");
         return;
@@ -160,22 +163,4 @@ function validateForm() {
 
     // Si todas las validaciones pasan, enviar el formulario
     form.dispatchEvent(new Event("submit"));
-}
-
-// Función para mostrar mensajes de validación
-function displayValidationMessage(message) {
-    const valBox = document.getElementById("val-box");
-    const valMsg = document.getElementById("val-msg");
-    const valList = document.getElementById("val-list");
-
-    valMsg.textContent = message;
-    valList.innerHTML = "";
-
-    valBox.removeAttribute("hidden");
-}
-
-// Función para resetear mensajes de validación
-function resetValidationMessages() {
-    const valBox = document.getElementById("val-box");
-    valBox.setAttribute("hidden", true);
 }
