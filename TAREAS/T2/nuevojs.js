@@ -100,7 +100,7 @@ const nombreInput = document.getElementById("nombre");
 const emailInput = document.getElementById("email");
 const phoneInput = document.getElementById("phone");
 const form = document.getElementById("agregar-artesano");
-const selectedFiles = document.getElementById("artesania_files").files;
+var inputs = document.querySelectorAll('.grupo-input input[type="file"]');
 
 // Agregar evento de clic al botón de envío
 const envioButton = document.getElementById("envio");
@@ -113,23 +113,48 @@ function validateForm() {
 
     // Validar condiciones
     if (regionSelecter.value === "defecto") {
-        displayValidationMessage("Debe seleccionar una región.");
+        alert("Seleccione una región");
         return;
     }
 
     if (comunaSelecter.value === "defecto") {
-        displayValidationMessage("Debe seleccionar una comuna.");
+        alert("Seleccione una comuna");
         return;
     }
 
     const selectedTipoArtesania = Array.from(tipoArtesaniaCheckboxes).filter(checkbox => checkbox.checked);
     if (selectedTipoArtesania.length === 0 || selectedTipoArtesania.length > 3) {
-        displayValidationMessage("Debe seleccionar entre 1 y 3 tipos de artesanía.");
+        alert("Debe seleccionar entre 1 y 3 tipos de artesanía.");
         return;
     }
 
-    if (selectedFiles.length === 0) {
-        displayValidationMessage("Debe entregar entre 1 a 3 fotos de su Artesanía.");
+    var archivosIngresados = true;
+    inputs.forEach(function(input) {
+        if (input.files.length < 1 || input.files.length > 3) {
+            archivosIngresados = false;
+        }
+    });
+    if (!archivosIngresados) {
+        alert("Debe entregar entre 1 a 3 fotos de su Artesanía.");
+        return;
+    }
+
+    if (nombreInput.length < 3 || nombreInput.length > 80 || nombreInput === null) {
+        alert("Indique un nombre válido");
+        return;
+    }
+
+    let regexEmail = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/
+    let emailValid = regexEmail.test(emailInput);
+    if (!emailValid) {
+        alert("Indique una dirección de correo electrónica válida");
+        return;
+    }
+
+    let regexPhone = /^[0-9]+$/; 
+    let phoneValid = regexPhone.test(phoneInput);
+    if (!phoneValid) {
+        alert("Indique un número telefónico válido");
         return;
     }
 
