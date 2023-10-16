@@ -95,15 +95,14 @@ regionSelecter.addEventListener("change", () => {
   });
 
 // Obtener referencias a los elementos del formulario
-let form_ = document.forms["agregar-artesano"]
 const form = document.getElementById("agregar-artesano");
 const tipoArtesaniaCheckboxes = document.querySelectorAll("input[name='tipo_artesania']");
 const nombreInput = document.getElementById("nombre");
 const emailInput = document.getElementById("email");
 const phoneInput = document.getElementById("phone");
-let archivo1 = form_["artesania_imgs1"].files;
-let archivo2 = form_["artesania_imgs2"].files;
-let archivo3 = form_["artesania_imgs3"].files;
+let archivo1 = document.getElementById("imgs1");
+let archivo2 = document.getElementById("imgs2");
+let archivo3 = document.getElementById("imgs3");
 
 // Agregar evento de clic al botón de envío
 const envioButton = document.getElementById("envio");
@@ -131,12 +130,11 @@ function validateForm() {
         return;
     }
 
-    if (archivo1.lenght == 1 || archivo2.length == 1 || archivo3.length == 1) {
-        var archivosIngresados = true; 
+    if (archivo1 === null && archivo2 === null && archivo3 === null) {
+        var archivosIngresados = false; 
     } else {
-        var archivosIngresados = false;
+        var archivosIngresados = true;
     }
-    
     if (!archivosIngresados) {
         alert("Debe entregar entre 1 a 3 fotos de su Artesanía.");
         return;
