@@ -4,4 +4,4 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("T2/Copia Tarea1/index.html")
+    return render_template("templates/index.html")
