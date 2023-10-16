@@ -110,9 +110,7 @@ envioButton.addEventListener("click", validateForm);
 
 // Función para validar el formulario
 function validateForm() {
-    // Resetear mensajes de validación anteriores
-    //resetValidationMessages();
-
+    
     // Validar condiciones
     if (regionSelecter.value === "defecto") {
         alert("Seleccione una región");
@@ -130,7 +128,7 @@ function validateForm() {
         return;
     }
 
-    if (archivo1 === null && archivo2 === null && archivo3 === null) {
+    if (archivo1files.length === 0 && archivo2.files.length === 0 && archivo3.files.length === 0) {
         var archivosIngresados = false; 
     } else {
         var archivosIngresados = true;
