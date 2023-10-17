@@ -4,13 +4,13 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("templates/index.html")
+    return render_template("templates/index/index.html")
 
-@app.route("/agregar-artesano", methods=["GET", "POST"])
+@app.route("/agregar-artesano", methods=("GET", "POST"))
 def registrar_artesano():
     return render_template("templates/agregar-artesano.html")
 
-@app.route("/register_artesano", methods=["GET", "POST"])
+@app.route("/register_artesano", methods=("GET", "POST"))
 def agregar_artesano():
     if request.method == 'POST':
         region = request.form.get("region")

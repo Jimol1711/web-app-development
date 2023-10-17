@@ -1,0 +1,30 @@
+{% extends 'templates/index/index.html' %}
+
+{% block title %} Juegos Panamericanos Chile 2023 {% endblock %}
+
+{% block header %}
+    <header>
+        <h1>Juegos Panamericanos Chile 2023</h1>
+    </header>
+{% endblock %}
+
+{% block css %}
+    <link 
+        rel="stylesheet" 
+        href="{{ url_for('static', filename='css/index.css') }}"/>
+{% endblock %}
+
+{% block nav %}
+    <nav>
+        <a href="agregar-hincha.html">Registrar Hincha</a>
+        <a href="agregar-artesano.html">Registrar Artesano</a>
+        <a href="ver-hinchas.html">Ver Listado de Hinchas</a>
+        <a href="ver-artesanos.html">Ver Listado de Artesanos</a>
+    </nav>
+{% endblock %}
+
+{% block img %}
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='jpg/logo_juegos_panam.png') }}" alt="Imagen de los Juegos Panamericanos" width="1585" height="200">
+    </div>
+{% endblock %}
