@@ -8,8 +8,10 @@ DB_HOST = "localhost"
 DB_PORT = 3306
 DB_CHARSET = "utf8"
 
-with open('database/querys.json', 'r') as querys:
+with open('db/querys.json', 'r') as querys:
 	QUERY_DICT = json.load(querys)
+
+# conexión a la base de datos
 
 def get_conn():
 	conn = pymysql.connect(
@@ -22,5 +24,40 @@ def get_conn():
 	)
 	return conn
 
-def agregar_artesano_db(id,comuna_id,descripcion,nombre,email,celular):
-	
+# funciones para insertar y obtener datos
+
+def agregar_artesano(comuna_id,descripcion,nombre,email,celular):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["insert_artesano"], (comuna_id,descripcion,nombre,email,celular))
+	conn.commit()
+
+def fetch_newest():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["select_new_to_old"])
+	listado = cursor.fetchall()
+	return listado
+
+def fetch_newest5():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["select_newest_5"])
+	listado = cursor.fetchall()
+	return listado
+
+def fetch_next_newest5():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["select_next_newest_5"])
+	listado = cursor.fetchall()
+	return listado
+
+def fetch_next_newest5_by_comuna():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["select_next_newest_5_by_comuna"])
+	listado = cursor.fetchall()
+	return listado
+
+def agregar_artesano_tipo(artesano_id,tipo_artesania_id):
