@@ -11,7 +11,7 @@ DB_CHARSET = "utf8"
 with open('database/querys.json', 'r') as querys:
 	QUERY_DICT = json.load(querys)
 
-def getArtesano():
+def get_conn():
 	conn = pymysql.connect(
 		db=DB_NAME,
 		user=DB_USERNAME,
@@ -21,3 +21,6 @@ def getArtesano():
 		charset=DB_CHARSET
 	)
 	return conn
+
+def agregar_artesano_db(id,comuna_id,descripcion,nombre,email,celular):
+	

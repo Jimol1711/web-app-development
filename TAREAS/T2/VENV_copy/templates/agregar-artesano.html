@@ -27,8 +27,19 @@
                     </select>
                 </div>
 
-                <div id="select-container">
-                    <label for="artesania">Tipo de artesanía que desea vender:</label>
+                <div id="checkbox-container" class="grupo-input">
+                    <label>Tipo de artesanía que desea vender:</label>
+                    <div id="tipo-artesania-checkboxes">
+                        <input type="checkbox" name="tipo_artesania" value="artesania1">mármol
+                        <input type="checkbox" name="tipo_artesania" value="artesania2">madera
+                        <input type="checkbox" name="tipo_artesania" value="artesania3">cerámica
+                        <input type="checkbox" name="tipo_artesania" value="artesania1">mimbre
+                        <input type="checkbox" name="tipo_artesania" value="artesania2">metal
+                        <input type="checkbox" name="tipo_artesania" value="artesania3">cuero
+                        <input type="checkbox" name="tipo_artesania" value="artesania1">telas
+                        <input type="checkbox" name="tipo_artesania" value="artesania2">joyas
+                        <input type="checkbox" name="tipo_artesania" value="artesania3">otro tipo
+                    </div>
                 </div>
 
                 <div id="descripcion" class="grupo-input">
@@ -36,10 +47,12 @@
                     <textarea name="descripcion_artesania" rows="4" cols="50"></textarea>
                 </div>
 
-                <div id="artesania_files" class="grupo-input">
+                
                     <label for="myfile">Foto(s) de su artesanía:</label>
-                    <input type="file" id="artesania_imgs" name="artesania_imgs" multiple accept="image/*,.pdf" required>
-                </div>
+                    <input type="file" id="imgs1" name="artesania_imgs1" accept="image/*,.pdf">
+                    <input type="file" id="imgs2" name="artesania_imgs2" accept="image/*,.pdf">
+                    <input type="file" id="imgs3" name="artesania_imgs3" accept="image/*,.pdf">
+                
                         
                 <div id="name-input" class="grupo-input">
                     <label for="nombre">Ingrese su nombre:</label>
@@ -63,6 +76,6 @@
                 </div>
             </form>
         </div>
-        <script lang="javascript" src="./agregar-artesano.js"></script>
+        <script lang="javascript" src="./nuevojs.js"></script>
     </body>
 </html>
