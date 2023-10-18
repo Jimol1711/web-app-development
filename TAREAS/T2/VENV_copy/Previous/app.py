@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, redirect, url_for
+from markupsafe import escape
 
 app = Flask(__name__)
 
@@ -23,3 +24,6 @@ def agregar_artesano():
         name = request.form.get("name")
         email = request.form.get("email")
         phone = request.form.get("phone")
+
+if __name__ == "__main__":
+    app.run(debug=True)
