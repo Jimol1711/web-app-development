@@ -60,4 +60,4 @@ def fetch_next_newest5_by_comuna():
 	listado = cursor.fetchall()
 	return listado
 
-def agregar_artesano_tipo(artesano_id,tipo_artesania_id):
+def agregar_artesano(comuna_id,description,nombre,email,phone):
