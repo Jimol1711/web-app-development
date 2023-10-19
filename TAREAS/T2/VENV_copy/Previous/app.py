@@ -1,16 +1,16 @@
 from flask import Flask, request, render_template, redirect, url_for
 from utils.validations import validate_artesano
-from db import db
+from database.db import *
 from markupsafe import escape
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("templates/index.html")
+    return render_template("index.html")
 
-@app.route("/agregar-artesano", methods=["GET", "POST"])
-def agregar_artesano():
+@app.route("/registrar-artesano", methods=["GET", "POST"])
+def registrar_artesano():
     if request.method == 'POST':
         region = request.form.get("region")
         comuna = request.form.get("comuna")
@@ -23,9 +23,9 @@ def agregar_artesano():
         email = request.form.get("email")
         phone = request.form.get("phone")
         if validate_artesano(region,comuna,tipos_artesania,foto1,foto2,foto3,name,email,phone):
-            status, message = db.agregar_artesano()
+            status, message = agregar_artesano()
 
-    return render_template("templates/agregar-artesano.html")
+    return render_template("agregar-artesano.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

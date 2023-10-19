@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Registrar Artesano</title>
-        <link rel="stylesheet" type="text/css" href="./registro.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/registro.css') }}">
     </head>
     <body>
         <div class="container">   
@@ -76,6 +76,6 @@
                 </div>
             </form>
         </div>
-        <script lang="javascript" src="./nuevojs.js"></script>
+        <script lang="javascript" src="{{ url_for('static', filename='js/nuevojs.css') }}"></script>
     </body>
 </html>
