@@ -9,7 +9,7 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route("/registrar-artesano", methods=["GET", "POST"])
+@app.route("/registro-artesano", methods=["GET", "POST"])
 def registrar_artesano():
     if request.method == 'POST':
         region = request.form.get("region")
@@ -22,10 +22,14 @@ def registrar_artesano():
         name = request.form.get("name")
         email = request.form.get("email")
         phone = request.form.get("phone")
-        if validate_artesano(region,comuna,tipos_artesania,foto1,foto2,foto3,name,email,phone):
-            status, message = agregar_artesano()
+        #if validate_artesano(region,comuna,tipos_artesania,foto1,foto2,foto3,name,email,phone):
+            #status, message = agregar_artesano()
 
     return render_template("agregar-artesano.html")
+
+@app.route("/informacion-artesanos", methods=["GET"])
+def ver_artesanos():
+    return render_template("ver-artesanos.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

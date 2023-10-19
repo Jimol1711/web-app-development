@@ -16,10 +16,10 @@
 
 {% block nav %}
     <nav>
-        <a href="agregar-hincha.html">Registrar Hincha</a>
-        <a href="agregar-artesano.html">Registrar Artesano</a>
-        <a href="ver-hinchas.html">Ver Listado de Hinchas</a>
-        <a href="ver-artesanos.html">Ver Listado de Artesanos</a>
+        <a href="{{ url_for('registrar_artesano') }}">Registrar Hincha</a>
+        <a href="{{ url_for('registrar_artesano') }}">Registrar Artesano</a>
+        <a href="{{ url_for('ver_artesanos') }}">Ver Listado de Hinchas</a>
+        <a href="{{ url_for('ver_artesanos') }}">Ver Listado de Artesanos</a>
     </nav>
 {% endblock %}
 

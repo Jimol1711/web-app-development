@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="informacion.css">
-    <title>Información del Artesano</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Información del Artesano{% endblock %}
+
+{% block css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/informacion.css') }}">{% endblock %}
+
+
+{% block header %}
     <header>
         <h1>Información del Artesano</h1>
     </header>
@@ -41,5 +40,4 @@
             <a href="ver-artesanos.html">Volver al Listado de Artesanos</a>
         </div>
     </main>
-</body>
-</html>
+{% endblock %}
