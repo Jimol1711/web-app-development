@@ -8,7 +8,6 @@ def validate_comuna(comuna):
     return comuna != "Seleccione una Comuna"
 
 def validate_tipo_artesania(tipos_artesania):
-    # Make sure that tipos_artesania is a list
     return len(tipos_artesania) >= 1 and len(tipos_artesania) <= 3
 
 def validate_artesania_img(artesania_img1,artesania_img2,artesania_img3):
@@ -37,19 +36,12 @@ def validate_name(name):
 
 def validate_email(email):
     regex = r'^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$'
-    
-    if re.match(regex, email):
-        return True
-    else:
-        return False
+    return re.match(regex, email)
+
     
 def validate_phone(phone):
     regex = r'^9\d{8}$'
-
-    if re.match(regex, phone):
-        return True
-    else:
-        return False
+    return re.match(regex, phone)
     
 def validate_artesano(region,comuna,tipos,img1,img2,img3,name,email,phone):
     return (validate_region(region) 

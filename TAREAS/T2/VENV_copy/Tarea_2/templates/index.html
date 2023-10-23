@@ -2,6 +2,14 @@
 
 {% block title %} Juegos Panamericanos Chile 2023 {% endblock %}
 
+{% block message %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <p>{{ messages }}</p>
+{% endif %}
+{% endwith %}
+{% endblock %}
+
 {% block header %}
     <header>
         <h1>Juegos Panamericanos Chile 2023</h1>
@@ -14,12 +22,12 @@
         href="{{ url_for('static', filename='css/index.css') }}"/>
 {% endblock %}
 
-{% block nav %}
+{% block content %}
     <nav>
         <a href="{{ url_for('registrar_artesano') }}">Registrar Hincha</a>
         <a href="{{ url_for('registrar_artesano') }}">Registrar Artesano</a>
-        <a href="{{ url_for('ver_artesanos') }}">Ver Listado de Hinchas</a>
-        <a href="{{ url_for('ver_artesanos') }}">Ver Listado de Artesanos</a>
+        <a href="{{ url_for('listado_artesanos') }}">Ver Listado de Hinchas</a>
+        <a href="{{ url_for('listado_artesanos') }}">Ver Listado de Artesanos</a>
     </nav>
 {% endblock %}
 
