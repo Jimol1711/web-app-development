@@ -29,9 +29,21 @@
             {% endfor %}
 
             <h2>Fotos:</h2>
-            {% for img in info_artesano.img %}
+            {% if _foto1 %}
             <a href="{{ url_for('index') }}" target="_blank">
-                <img src="{{ url_for('static', filename='/uploads' + info_artesano.img) }}" width="640" height="480" alt="text">
+                <img src="{{ url_for('static', filename=info_artesano.img1) }}" width="640" height="480" alt="text">
+            </a>
+            {% endfif %}
+
+            {% if _foto2 %}
+            <a href="{{ url_for('index') }}" target="_blank">
+                <img src="{{ url_for('static', filename=info_artesano.img2) }}" width="640" height="480" alt="text">
+            </a>
+            {% endfor %}
+
+            {% if _foto3 %}
+            <a href="{{ url_for('index') }}" target="_blank">
+                <img src="{{ url_for('static', filename=info_artesano.img3) }}" width="640" height="480" alt="text">
             </a>
             {% endfor %}
 

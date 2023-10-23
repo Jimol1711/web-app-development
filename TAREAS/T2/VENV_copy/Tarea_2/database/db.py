@@ -63,7 +63,7 @@ def get_img(artesano_id):
 	conn = get_conn()
 	cursor = conn.cursor()
 	cursor.execute(QUERY_DICT["select_pictures_of_artesano"],(artesano_id))
-	picture = cursor.fetchone()
+	picture = cursor.fetchall()
 	return picture
 
 # WARNING: get_artesano_id gives the id of the last added artesano

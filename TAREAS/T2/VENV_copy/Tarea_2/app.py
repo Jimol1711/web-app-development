@@ -6,7 +6,7 @@ import uuid
 import filetype
 import os
 
-UPLOAD_FOLDER = 'static/uploads'
+UPLOAD_FOLDER = 'uploads'
 
 app = Flask(__name__)
 
@@ -89,8 +89,8 @@ def listado_artesanos():
 
         tipos = db.get_tipos_of_artesano(id)
 
-        ruta_foto, name_foto = db.get_img(id) if db.get_img(id) else (None, None)
-        foto = os.path.join(ruta_foto,name_foto) if db.get_img(id) else None
+        _foto1 = db.get_img(id)[0] if db.get_img(id) else (None, None)
+        foto = False #os.path.join(ruta_foto,name_foto) if db.get_img(id) else None
 
         comuna,_ = db.get_comuna_by_id(comuna_id)
         info_artesano = {"id": id,
@@ -98,7 +98,7 @@ def listado_artesanos():
                         "name": name,
                         "phone": phone,
                         "tipos": tipos,
-                        "img": foto}
+                        "img": _foto1}
         
         info_artesanos.append(info_artesano)
 
@@ -112,9 +112,16 @@ def ver_artesano(id):
     region = db.get_region_by_id(region_id)
 
     tipos = db.get_tipos_of_artesano(id)
-
-    ruta_foto, name_foto = db.get_img(id)
-    foto = os.path.join(ruta_foto,name_foto)
+ 
+    _foto1 = db.get_img(id)[0] if db.get_img(id)[0] else None
+    _foto2 = db.get_img(id)[1] if db.get_img(id)[1] else None
+    _foto3 = db.get_img(id)[2] if db.get_img(id)[2] else None
+    ruta1, foto1 = _foto1 
+    ruta2, foto2 = _foto2 if _foto2 else (None, None)
+    ruta3, foto3 = _foto3 if _foto3 else (None, None)
+    nombre_foto1 = ruta1 + "/" + foto1
+    nombre_foto2 = ruta2 + "/" + foto2
+    nombre_foto3 = ruta3 + "/" + foto3
 
     info_artesano = {"id": id,
                      "name": name,
@@ -124,7 +131,9 @@ def ver_artesano(id):
                      "tipos": tipos,
                      "description": description,
                      "email": email,
-                     "img": foto}
+                     "img1": nombre_foto1,
+                     "img2": nombre_foto2,
+                     "img3": nombre_foto3}
 
     return render_template("./informacion-artesano.html", id=id, info_artesano=info_artesano)
 
