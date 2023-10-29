@@ -4,7 +4,6 @@ import database.db as db
 from markupsafe import escape
 import uuid
 import filetype
-import os
 
 UPLOAD_FOLDER = 'uploads'
 
@@ -89,8 +88,9 @@ def listado_artesanos():
 
         tipos = db.get_tipos_of_artesano(id)
 
-        _foto1 = db.get_img(id)[0] if db.get_img(id) else (None, None)
-        foto = False #os.path.join(ruta_foto,name_foto) if db.get_img(id) else None
+        _foto = db.get_img(id)[0]
+        ruta = _foto[0]
+        foto = _foto[1]
 
         comuna,_ = db.get_comuna_by_id(comuna_id)
         info_artesano = {"id": id,
@@ -98,8 +98,9 @@ def listado_artesanos():
                         "name": name,
                         "phone": phone,
                         "tipos": tipos,
-                        "img": _foto1}
-        
+                        "route": ruta,
+                        "foto": foto}
+
         info_artesanos.append(info_artesano)
 
     return render_template("./ver-artesanos.html", info_artesanos=info_artesanos)
@@ -113,15 +114,26 @@ def ver_artesano(id):
 
     tipos = db.get_tipos_of_artesano(id)
  
-    _foto1 = db.get_img(id)[0] if db.get_img(id)[0] else None
-    _foto2 = db.get_img(id)[1] if db.get_img(id)[1] else None
-    _foto3 = db.get_img(id)[2] if db.get_img(id)[2] else None
-    ruta1, foto1 = _foto1 
-    ruta2, foto2 = _foto2 if _foto2 else (None, None)
-    ruta3, foto3 = _foto3 if _foto3 else (None, None)
-    nombre_foto1 = ruta1 + "/" + foto1
-    nombre_foto2 = ruta2 + "/" + foto2
-    nombre_foto3 = ruta3 + "/" + foto3
+    _foto1 = db.get_img(id)[0]
+    ruta1 = _foto1[0]
+    foto1 = _foto1[1]
+
+    _foto2 = False
+    _foto3 = False
+    ruta2 = None
+    ruta3 = None
+    foto2 = None
+    foto3 = None
+
+    if len(db.get_img(id)) > 1:
+        _foto2 = db.get_img(id)[1]
+        ruta2 = _foto2[0]
+        foto2 = _foto2[1]
+
+    if len(db.get_img(id)) == 3:
+        _foto3 = db.get_img(id)[2]
+        ruta3 = _foto3[0]
+        foto3 = _foto3[1]
 
     info_artesano = {"id": id,
                      "name": name,
@@ -131,11 +143,14 @@ def ver_artesano(id):
                      "tipos": tipos,
                      "description": description,
                      "email": email,
-                     "img1": nombre_foto1,
-                     "img2": nombre_foto2,
-                     "img3": nombre_foto3}
+                     "ruta1": ruta1,
+                     "ruta2": ruta2,
+                     "ruta3": ruta3,
+                     "foto1": foto1,
+                     "foto2":foto2,
+                     "foto3":foto3}
 
-    return render_template("./informacion-artesano.html", id=id, info_artesano=info_artesano)
+    return render_template("./informacion-artesano.html", id=id, info_artesano=info_artesano, _foto1=_foto1, _foto2=_foto2, _foto3=_foto3)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -33,9 +33,9 @@
                                                                                                               {{ artesano.tipos[1] }}{{ ", "}}
                                                                                                               {{ artesano.tipos[2] }}</a></td>
 
-                            {% if artesano.img %}
-                            <td><a href="{{ url_for('ver_artesano', id=artesano.id) }}"><img src="{{ url_for('static', filename=artesano.img) }}" width="120" height="120" alt="text"></a></td>
-                            {% endif %}
+                            
+                            <td><a href="{{ url_for('ver_artesano', id=artesano.id) }}"><img src="{{ url_for('static', filename=artesano.route + '/' + artesano.foto) }}" width="120" height="120" alt="text"></a></td>
+                            
                         </tr>
                     {% endfor %}
                 {% endif %}

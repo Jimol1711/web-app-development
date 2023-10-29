@@ -31,21 +31,21 @@
             <h2>Fotos:</h2>
             {% if _foto1 %}
             <a href="{{ url_for('index') }}" target="_blank">
-                <img src="{{ url_for('static', filename=info_artesano.img1) }}" width="640" height="480" alt="text">
+                <img src="{{ url_for('static', filename=info_artesano.ruta1+'/'+info_artesano.foto1) }}" width="640" height="480" alt="text">
             </a>
-            {% endfif %}
+            {% endif %}
 
             {% if _foto2 %}
             <a href="{{ url_for('index') }}" target="_blank">
-                <img src="{{ url_for('static', filename=info_artesano.img2) }}" width="640" height="480" alt="text">
+                <img src="{{ url_for('static', filename=info_artesano.ruta1+'/'+info_artesano.foto2) }}" width="640" height="480" alt="text">
             </a>
-            {% endfor %}
+            {% endif %}
 
             {% if _foto3 %}
             <a href="{{ url_for('index') }}" target="_blank">
-                <img src="{{ url_for('static', filename=info_artesano.img3) }}" width="640" height="480" alt="text">
+                <img src="{{ url_for('static', filename=info_artesano.ruta1+'/'+info_artesano.foto3) }}" width="640" height="480" alt="text">
             </a>
-            {% endfor %}
+            {% endif %}
 
             <h2>Descripción de la Artesanía:</h2>
             <p id="descripcionArtesania">{{ info_artesano.description }}</p>
