@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Artesanos- Juegos Panamericanos{% endblock %}
+
+{% block css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/listado.css') }}">{% endblock %}
+
+{% block header %}
+    <header>
+        <h1>Listado de Artesanos - Juegos Panamericanos</h1>
+    </header>
+{% endblock %}
+
+{% block info %}
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Comuna</th>
+                    <th>Tipo Artesanías</th>
+                    <th>Fotos</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if info_artesanos %}
+                    {% for artesano in info_artesanos %}
+                        <tr class ="fila-artesano">
+                            <td><a class="no-link-style" href="{{ url_for('ver_artesano', id=artesano.id) }}">{{ artesano.name }}</a></td>
+                            <td><a class="no-link-style" href="{{ url_for('ver_artesano', id=artesano.id) }}">{{ artesano.phone }}</a></td>
+                            <td><a class="no-link-style" href="{{ url_for('ver_artesano', id=artesano.id) }}">{{ artesano.comuna }}</a></td>
+                            <td><a class="no-link-style" href="{{ url_for('ver_artesano', id=artesano.id) }}">{{ artesano.tipos[0] }}{{ ", "}}
+                                                                                                              {{ artesano.tipos[1] }}{{ ", "}}
+                                                                                                              {{ artesano.tipos[2] }}</a></td>
+
+                            
+                            <td><a href="{{ url_for('ver_artesano', id=artesano.id) }}"><img src="{{ url_for('static', filename=artesano.route + '/' + artesano.foto) }}" width="120" height="120" alt="text"></a></td>
+                            
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('index') }}" class="volver-button">Volver a la Portada</a>
+    </main>
+{% endblock %}
+
+{% block javascript %}<script src="{{ url_for('static', filename='js/script.js') }}"></script>{% endblock %}

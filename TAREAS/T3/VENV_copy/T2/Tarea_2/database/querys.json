@@ -1,0 +1,18 @@
+{
+    "insert_artesano": "INSERT INTO artesano (comuna_id, descripcion_artesania, nombre, email, celular) VALUES (%s,%s,%s,%s,%s)",
+    "select_newest_5": "SELECT id, comuna_id, descripcion_artesania, nombre, email, celular FROM artesano ORDER BY id DESC LIMIT %s, 5",
+    "insert_artesano_tipo": "INSERT INTO artesano_tipo (artesano_id, tipo_artesania_id) VALUES (%s,%s)",
+    "select_types_of_artesano": "SELECT TA.nombre FROM tipo_artesania TA, artesano_tipo AT WHERE AT.tipo_artesania_id=TA.id AND AT.artesano_id=%s",
+    "insert_picture": "INSERT INTO foto (ruta_archivo, nombre_archivo, artesano_id) VALUES (%s,%s,%s)",
+    "select_pictures_of_artesano": "SELECT ruta_archivo, nombre_archivo FROM foto WHERE artesano_id=%s",
+    "select_last_id": "SELECT LAST_INSERT_ID()",
+    "get_artesano_by_email": "SELECT * FROM artesano WHERE email = %s",
+    "get_artesano_by_phone": "SELECT * FROM artesano WHERE celular = %s",
+    "get_region_id": "SELECT id FROM region WHERE nombre = %s",
+    "get_region_by_id": "SELECT nombre FROM region WHERE id = %s",
+    "get_comuna_id_by_region_id": "SELECT C.id FROM comuna C, region R WHERE C.region_id = R.id AND R.id = %s AND C.nombre = %s",
+    "get_tipo_id": "SELECT id FROM tipo_artesania WHERE nombre = %s",
+    "get_comuna_by_id": "SELECT nombre,region_id FROM comuna WHERE id = %s",
+    "get_artesano_by_id": "SELECT comuna_id, descripcion_artesania, nombre, email, celular FROM artesano WHERE id = %s",
+    "count_artesanos": "SELECT COUNT(*) FROM artesano"
+}
