@@ -25,7 +25,7 @@ def registrar_hincha():
 @app.route("/listado-hinchas", methods=["GET"])
 def listado_hinchas():
 
-    list_hinchas = db.fetch_newest5(0)
+    list_hinchas = db.fetch_newest5_hincha(0)
     info_hinchas = []
     # Seguir misma lógica 
 
@@ -118,7 +118,7 @@ def registrar_artesano():
 @app.route("/listado-artesanos", methods=["GET"])
 def listado_artesanos():
 
-    list_artesanos = db.fetch_newest5("artesano",0)
+    list_artesanos = db.fetch_newest5_artesano(0)
 
     info_artesanos = []
 

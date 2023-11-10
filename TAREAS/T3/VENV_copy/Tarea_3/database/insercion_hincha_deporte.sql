@@ -1,0 +1,9 @@
+INSERT INTO hincha_deporte (hincha_id, deporte_id) VALUES (1,1);
+INSERT INTO hincha_deporte (hincha_id, deporte_id) VALUES (1,15);
+INSERT INTO hincha_deporte (hincha_id, deporte_id) VALUES (2,29);
+INSERT INTO hincha_deporte (hincha_id, deporte_id) VALUES (3,46);
+INSERT INTO hincha_deporte (hincha_id, deporte_id) VALUES (3,34);
+INSERT INTO hincha_deporte (hincha_id, deporte_id) VALUES (3,7);
+INSERT INTO hincha_deporte (hincha_id, deporte_id) VALUES (4,37);
+INSERT INTO hincha_deporte (hincha_id, deporte_id) VALUES (5,56);
+INSERT INTO hincha_deporte (hincha_id, deporte_id) VALUES (6,40);

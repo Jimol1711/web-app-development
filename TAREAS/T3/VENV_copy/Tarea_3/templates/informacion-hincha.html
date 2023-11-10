@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="informacion.css">
-    <title>Información del Hincha</title>
+{% extends 'base.html' %}
+
+{% block title %}Información del Hincha{% endblock %}
+
+{% block css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/informacion.css') }}">{% endblock %}
+
+{% block header %}
 </head>
 <body>
     <header>
@@ -41,5 +41,4 @@
             <a href="ver-hinchas.html">Volver al Listado de Hinchas</a>
         </div>
     </main>
-</body>
-</html>
+{% endblock %}

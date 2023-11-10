@@ -1,6 +1,7 @@
 {
     "insert_artesano": "INSERT INTO artesano (comuna_id, descripcion_artesania, nombre, email, celular) VALUES (%s,%s,%s,%s,%s)",
-    "select_newest_5": "SELECT id, comuna_id, descripcion_artesania, nombre, email, celular FROM %s ORDER BY id DESC LIMIT %s, 5",
+    "select_newest_5_artesano": "SELECT id, comuna_id, descripcion_artesania, nombre, email, celular FROM artesano ORDER BY id DESC LIMIT %s, 5",
+    "select_newest_5_hincha": "SELECT id, comuna_id, modo_transporte, nombre, email, celular, comentarios FROM hincha ORDER BY id DESC LIMIT %s, 5",
     "insert_artesano_tipo": "INSERT INTO artesano_tipo (artesano_id, tipo_artesania_id) VALUES (%s,%s)",
     "select_types_of_artesano": "SELECT TA.nombre FROM tipo_artesania TA, artesano_tipo AT WHERE AT.tipo_artesania_id=TA.id AND AT.artesano_id=%s",
     "insert_picture": "INSERT INTO foto (ruta_archivo, nombre_archivo, artesano_id) VALUES (%s,%s,%s)",

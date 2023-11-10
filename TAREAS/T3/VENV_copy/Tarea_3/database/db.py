@@ -32,11 +32,19 @@ def insert_artesano(comuna_id,descripcion,nombre,email,celular):
 	cursor.execute(QUERY_DICT["insert_artesano"], (comuna_id,descripcion,nombre,email,celular))
 	conn.commit()
 
-def fetch_newest5(table,page):
+def fetch_newest5_artesano(page):
 	page = page * 5
 	conn = get_conn()
 	cursor = conn.cursor()
-	cursor.execute(QUERY_DICT["select_newest_5"], (table,page))
+	cursor.execute(QUERY_DICT["select_newest_5_artesano"], (page))
+	listado = cursor.fetchall()
+	return listado
+
+def fetch_newest5_hincha(page):
+	page = page * 5
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["select_newest_5_hincha"], (page))
 	listado = cursor.fetchall()
 	return listado
 
