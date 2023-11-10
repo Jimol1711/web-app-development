@@ -1,0 +1,9 @@
+INSERT INTO foto (ruta_archivo, nombre_archivo, artesano_id) VALUES ("uploads","ceramica.jpg",1);
+INSERT INTO foto (ruta_archivo, nombre_archivo, artesano_id) VALUES ("uploads","cielo.jpg",1);
+INSERT INTO foto (ruta_archivo, nombre_archivo, artesano_id) VALUES ("uploads","joyas.jpg",2);
+INSERT INTO foto (ruta_archivo, nombre_archivo, artesano_id) VALUES ("uploads","cuero.jpg",3);
+INSERT INTO foto (ruta_archivo, nombre_archivo, artesano_id) VALUES ("uploads","ceramica.jpg",3);
+INSERT INTO foto (ruta_archivo, nombre_archivo, artesano_id) VALUES ("uploads","madera.jpg",3);
+INSERT INTO foto (ruta_archivo, nombre_archivo, artesano_id) VALUES ("uploads","mimbre.jpg",4);
+INSERT INTO foto (ruta_archivo, nombre_archivo, artesano_id) VALUES ("uploads","cielo.jpg",5);
+INSERT INTO foto (ruta_archivo, nombre_archivo, artesano_id) VALUES ("uploads","ceramica.jpg",6);

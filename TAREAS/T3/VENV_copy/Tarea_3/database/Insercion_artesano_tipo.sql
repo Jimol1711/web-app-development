@@ -1,0 +1,9 @@
+INSERT INTO artesano_tipo (artesano_id, tipo_artesania_id) VALUES (1,1);
+INSERT INTO artesano_tipo (artesano_id, tipo_artesania_id) VALUES (1,5);
+INSERT INTO artesano_tipo (artesano_id, tipo_artesania_id) VALUES (2,9);
+INSERT INTO artesano_tipo (artesano_id, tipo_artesania_id) VALUES (3,4);
+INSERT INTO artesano_tipo (artesano_id, tipo_artesania_id) VALUES (3,3);
+INSERT INTO artesano_tipo (artesano_id, tipo_artesania_id) VALUES (3,1);
+INSERT INTO artesano_tipo (artesano_id, tipo_artesania_id) VALUES (4,7);
+INSERT INTO artesano_tipo (artesano_id, tipo_artesania_id) VALUES (5,8);
+INSERT INTO artesano_tipo (artesano_id, tipo_artesania_id) VALUES (6,4);
