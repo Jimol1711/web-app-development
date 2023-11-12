@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Registrar Hincha</title>
-        <link rel="stylesheet" type="text/css" href="./registro.css">
-    </head>
-    <body>
+{% extends 'base.html' %}
+
+{% block title %}Registrar Hincha{% endblock %}
+
+{% block css %}<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/registro.css') }}">{% endblock %}
+
+{% block content %}
         <div class="container">
             <div id = "val-box" hidden>
                 <h2 id="val-msg">Fallo Validación</h2>
@@ -62,10 +60,12 @@
                 </div>
                 
                 <div class="buttons">
-                    <button id = "submit-btn" type="button" onclick="validateForm()">Registrar Hincha</button>
+                    <button id = "submit-btn" type="button" onclick="validateForm()">
+                        Registrar Hincha
+                    </button>
                 </div>
             </form>
         </div>
-        <script src="./agregar-hincha.js"></script>
-    </body>
-</html>
+{% endblock %}
+
+{% block javascript %}<script src="{{ url_for('static', filename='js/agregar-hincha.js') }}"></script>{% endblock %}

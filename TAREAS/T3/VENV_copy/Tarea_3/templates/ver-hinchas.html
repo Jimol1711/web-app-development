@@ -26,13 +26,13 @@
                 {% if info_hinchas %}
                     {% for hincha in info_hinchas %}
                         <tr class="fila-hincha">
-                            <td><a class="no-link-style" href="informacion-hincha.html">{{ hincha.name }}</a></td>
-                            <td><a class="no-link-style" href="informacion-hincha.html">{{ hincha.comuna }}</a></td>
-                            <td><a class="no-link-style" href="informacion-hincha.html">{{ hincha.deportes[0] }}{{ ", "}}
-                                                                                        {{ hincha.deportes[1] }}{{ ", "}}
-                                                                                        {{ hincha.deportes[2] }}</a></td>
-                            <td><a class="no-link-style" href="informacion-hincha.html">{{ hincha.transporte }}</a></td>
-                            <td><a class="no-link-style" href="informacion-hincha.html">{{ hincha.phone }}</a></td>
+                            <td><a class="no-link-style" href="{{ url_for('ver_hincha', id=hincha.id) }}">{{ hincha.name }}</a></td>
+                            <td><a class="no-link-style" href="{{ url_for('ver_hincha', id=hincha.id) }}">{{ hincha.comuna }}</a></td>
+                            <td><a class="no-link-style" href="{{ url_for('ver_hincha', id=hincha.id) }}">{{ hincha.deportes[0] }}{{ ", "}}
+                                                                                                          {{ hincha.deportes[1] }}{{ ", "}}
+                                                                                                          {{ hincha.deportes[2] }}</a></td>
+                            <td><a class="no-link-style" href="{{ url_for('ver_hincha', id=hincha.id) }}">{{ hincha.transporte }}</a></td>
+                            <td><a class="no-link-style" href="{{ url_for('ver_hincha', id=hincha.id) }}">{{ hincha.phone }}</a></td>
                         </tr>
                     {% endfor %}
                 {% endif %}

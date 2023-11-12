@@ -61,6 +61,13 @@ def get_tipos_of_artesano(artesano_id):
 	tipos = cursor.fetchall()
 	return tipos
 
+def get_deportes_of_hincha(hincha_id):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["select_deportes_of_hincha"],(hincha_id))
+	deportes = cursor.fetchall()
+	return deportes
+
 def insert_img(route,foto,artesano_id):
 	conn = get_conn()
 	cursor = conn.cursor()
@@ -78,7 +85,7 @@ def get_img(artesano_id):
 def get_artesano_id():
 	conn = get_conn()
 	cursor = conn.cursor()
-	cursor.execute(QUERY_DICT["select-last_id"])
+	cursor.execute(QUERY_DICT["select_last_id"])
 	artesano_id = cursor.fetchone()
 	return artesano_id
 
@@ -136,6 +143,13 @@ def get_artesano_by_id(id):
 	cursor.execute(QUERY_DICT["get_artesano_by_id"],(id))
 	artesano = cursor.fetchone()
 	return artesano
+
+def get_hincha_by_id(id):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["get_hincha_by_id"],(id))
+	hincha = cursor.fetchone()
+	return hincha
 
 def count_artesanos():
 	conn = get_conn()

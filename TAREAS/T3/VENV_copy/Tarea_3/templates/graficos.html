@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Gráficos de Artesanos e Hinchas por tipo y deporte {% endblock %}
+
+{% block css %}
+    <link 
+        rel="stylesheet" 
+        href="{{ url_for('static', filename='css/listado.css') }}"
+    />
+{% endblock %}
+
+{% block content %} 
+<div class="graphs-container">
+    <figure class="highcharts-figure">
+        <div id="container1"></div>
+        <div id="container2"></div>
+        <p class="highcharts-description">
+            Los graficos presentan el número de hinchas por deporte y el número de artesanos por tipo de artesanía inscritos actualmente.
+        </p>
+    </figure>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="{{ url_for('static', filename='js/graficos.js') }}"></script>
+{% endblock %}

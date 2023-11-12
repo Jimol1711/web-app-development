@@ -1,4 +1,5 @@
-from flask import Flask, request, render_template, redirect, url_for, flash
+from flask import Flask, request, render_template, redirect, url_for, flash, jsonify
+from flask_cors import cross_origin
 from utils.validations import validate_artesano, validate_artesania_img
 import database.db as db
 from markupsafe import escape
@@ -26,8 +27,23 @@ def registrar_hincha():
 def listado_hinchas():
 
     list_hinchas = db.fetch_newest5_hincha(0)
+
     info_hinchas = []
-    # Seguir misma lógica 
+    
+    for hincha in list_hinchas:
+        id,comuna_id,transporte,name,_,phone,_ = hincha
+
+        deportes = db.get_deportes_of_hincha(id)
+
+        comuna,_ = db.get_comuna_by_id(comuna_id)
+        info_hincha = {"id":id,
+                       "comuna": comuna,
+                       "name": name,
+                       "deportes": deportes,
+                       "transporte": transporte,
+                       "phone": phone}
+        
+        info_hinchas.append(info_hincha)
 
     return render_template("./ver-hinchas.html", info_hinchas=info_hinchas)
 
@@ -39,8 +55,6 @@ def ver_hincha(id):
     region = db.get_region_by_id(region_id)
 
     deportes = db.get_deportes_of_hincha(id)
-    transporte = []
-    comments = "Hola que tal"
 
     info_hincha = {"id": id,
                    "deportes": deportes,
@@ -190,6 +204,28 @@ def ver_artesano(id):
                      "foto3":foto3}
 
     return render_template("./informacion-artesano.html", id=id, info_artesano=info_artesano, _foto1=_foto1, _foto2=_foto2, _foto3=_foto3)
+
+# --- Graficos ---
+
+@app.route("/graficos", methods=["GET"])
+def stats():
+    return render_template("graficos.html")
+
+@app.route("/get-artesanos-data", methods=["GET"])
+@cross_origin(origin="localhost", supports_credentials=True)
+def get_artesanos_data():
+    
+    artesanos_data = []
+
+    return jsonify(artesanos_data)
+
+@app.route("/get-hinchas-data", methods=["GET"])
+@cross_origin(origin="localhost", supports_credentials=True)
+def get_hinchas_data():
+    
+    hinchas_data = []
+
+    return jsonify(hinchas_data)
 
 if __name__ == "__main__":
     app.run(debug=True)
