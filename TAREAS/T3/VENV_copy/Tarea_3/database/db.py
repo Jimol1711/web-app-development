@@ -158,6 +158,20 @@ def count_artesanos():
 	conteo = cursor.fetchone()
 	return conteo
 
+def get_count_artesanos_by_tipo():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["count_artesanos_by_tipo"])
+	count_artesanos = cursor.fetchall()
+	return count_artesanos
+
+def get_count_hinchas_by_deporte():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["count_hinchas_by_deporte"])
+	count_hinchas = cursor.fetchall()
+	return count_hinchas
+
 # -- funciones para agregar el artesano --
 
 def agregar_artesano(comuna_id,descripcion,nombre,email,phone):

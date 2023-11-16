@@ -209,23 +209,31 @@ def ver_artesano(id):
 
 @app.route("/graficos", methods=["GET"])
 def stats():
+    print(db.get_count_artesanos_by_tipo())
+    print(db.get_count_hinchas_by_deporte())
     return render_template("graficos.html")
 
 @app.route("/get-artesanos-data", methods=["GET"])
 @cross_origin(origin="localhost", supports_credentials=True)
 def get_artesanos_data():
     
-    artesanos_data = []
+    def transform_data_artesanos(data):
+        return [{'tipo_artesania': item[0], 'artesanos': item[1]} for item in data]
 
-    return jsonify(artesanos_data)
+    artesanos_data = db.get_count_artesanos_by_tipo()
+
+    return jsonify(transform_data_artesanos(artesanos_data))
 
 @app.route("/get-hinchas-data", methods=["GET"])
 @cross_origin(origin="localhost", supports_credentials=True)
 def get_hinchas_data():
-    
-    hinchas_data = []
 
-    return jsonify(hinchas_data)
+    def transform_data_hinchas(data):
+        return [{'deporte': item[0], 'hinchas': item[1]} for item in data]
+    
+    hinchas_data = db.get_count_hinchas_by_deporte()
+    
+    return jsonify(transform_data_hinchas(hinchas_data))
 
 if __name__ == "__main__":
     app.run(debug=True)
