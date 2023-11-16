@@ -60,6 +60,12 @@ def insert_artesano_tipo(artesano_id,tipo_id):
 	cursor.execute(QUERY_DICT["insert_artesano_tipo"], (artesano_id, tipo_id))
 	conn.commit()
 
+def insert_hincha_deporte(hincha_id,deporte_id):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["insert_hincha_deporte"], (hincha_id, deporte_id))
+	conn.commit()
+
 def get_tipos_of_artesano(artesano_id):
 	conn = get_conn()
 	cursor = conn.cursor()

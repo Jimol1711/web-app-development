@@ -51,10 +51,18 @@ def registrar_hincha():
             if status:
                 hincha_id = db.get_hincha_id()
 
-                for d in deportes:
+                for did in deportes_id:
+                    if did is not None:
+                        db.insert_hincha_deporte(hincha_id,did)
+                
+                flash("Hincha registrado exitosamente.", "success")
+                return redirect(url_for("index"))
 
-
-            return 0 #agregar datos de hinchas y validaciones
+            else:
+                msg = ""
+                flash(f"Fallo validación: {msg}", error)
+        else:
+            flash(f"Fallo validación")
 
     return render_template("./agregar-hincha.html")
 
@@ -132,9 +140,9 @@ def registrar_artesano():
 
                 artesano_id = db.get_artesano_id()
 
-                for t in tipos_id:
-                    if t is not None:
-                        db.insert_artesano_tipo(artesano_id,t)
+                for tid in tipos_id:
+                    if tid is not None:
+                        db.insert_artesano_tipo(artesano_id,tid)
                 
                 if validate_artesania_img(foto1,foto2,foto3):
 

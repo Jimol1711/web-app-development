@@ -4,6 +4,7 @@
     "select_newest_5_artesano": "SELECT id, comuna_id, descripcion_artesania, nombre, email, celular FROM artesano ORDER BY id DESC LIMIT %s, 5",
     "select_newest_5_hincha": "SELECT id, comuna_id, modo_transporte, nombre, email, celular, comentarios FROM hincha ORDER BY id DESC LIMIT %s, 5",
     "insert_artesano_tipo": "INSERT INTO artesano_tipo (artesano_id, tipo_artesania_id) VALUES (%s,%s)",
+    "insert_hincha_deporte": "INSERT INTO hincha_deporte (hincha_id, deporte_id) VALUES (%s,%s)",
     "select_types_of_artesano": "SELECT TA.nombre FROM tipo_artesania TA, artesano_tipo AT WHERE AT.tipo_artesania_id=TA.id AND AT.artesano_id=%s",
     "select_deportes_of_hincha": "SELECT D.nombre FROM deporte D, hincha_deporte HD WHERE HD.deporte_id=D.id AND HD.hincha_id=%s",
     "insert_picture": "INSERT INTO foto (ruta_archivo, nombre_archivo, artesano_id) VALUES (%s,%s,%s)",

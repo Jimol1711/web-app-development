@@ -38,7 +38,7 @@ def validate_artesania_img(artesania_img1,artesania_img2,artesania_img3):
     return True
 
 def validate_name(name):
-    return name.length >= 3 and name.length <= 80 and name != None
+    return len(name) >= 3 and len(name) <= 80 and name != None
 
 def validate_email(email):
     regex = r'^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$'
