@@ -32,6 +32,12 @@ def insert_artesano(comuna_id,descripcion,nombre,email,celular):
 	cursor.execute(QUERY_DICT["insert_artesano"], (comuna_id,descripcion,nombre,email,celular))
 	conn.commit()
 
+def insert_hincha(comuna_id,modo_transporte,nombre,email,celular,comentarios):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["insert_hincha"], (comuna_id,modo_transporte,nombre,email,celular,comentarios))
+	conn.commit()
+
 def fetch_newest5_artesano(page):
 	page = page * 5
 	conn = get_conn()
@@ -85,9 +91,17 @@ def get_img(artesano_id):
 def get_artesano_id():
 	conn = get_conn()
 	cursor = conn.cursor()
-	cursor.execute(QUERY_DICT["select_last_id"])
+	cursor.execute(QUERY_DICT["select_last_artesano_id"])
 	artesano_id = cursor.fetchone()
 	return artesano_id
+
+# WARNING: get_hincha_id gives the id of the last added hincha
+def get_hincha_id():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["select_last_hincha_id"])
+	hincha_id = cursor.fetchone()
+	return hincha_id
 
 def get_artesano_by_email(email):
 	conn = get_conn()
@@ -96,12 +110,26 @@ def get_artesano_by_email(email):
 	artesano = cursor.fetchone()
 	return artesano
 
+def get_hincha_by_email(email):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["get_hincha_by_email"], email)
+	hincha = cursor.fetchone()
+	return hincha
+
 def get_artesano_by_phone(phone):
 	conn = get_conn()
 	cursor = conn.cursor()
 	cursor.execute(QUERY_DICT["get_artesano_by_phone"], phone)
 	artesano = cursor.fetchone()
 	return artesano
+
+def get_hincha_by_phone(phone):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["get_hincha_by_phone"], phone)
+	hincha = cursor.fetchone()
+	return hincha
 
 def get_region_id(region):
 	conn = get_conn()
@@ -123,6 +151,14 @@ def get_comuna_id_by_region_id(region_id,comuna):
 	cursor.execute(QUERY_DICT["get_comuna_id_by_region_id"], (region_id,comuna))
 	comuna_id = cursor.fetchone()
 	return comuna_id
+
+def get_deporte_id(deporte):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["get_deporte_id"], tipo)
+	deporte_id = cursor.fetchone()
+	conn.commit()
+	return deporte_id
 
 def get_tipo_id(tipo):
 	conn = get_conn()
@@ -172,7 +208,7 @@ def get_count_hinchas_by_deporte():
 	count_hinchas = cursor.fetchall()
 	return count_hinchas
 
-# -- funciones para agregar el artesano --
+# -- funciones para agregar el artesano y al hincha --
 
 def agregar_artesano(comuna_id,descripcion,nombre,email,phone):
 	_email_artesano = get_artesano_by_email(email)
@@ -183,3 +219,14 @@ def agregar_artesano(comuna_id,descripcion,nombre,email,phone):
 		return False, "El número de celular indicado está en uso."
 	insert_artesano(comuna_id,descripcion,nombre,email,phone)
 	return True, None
+
+def agregar_hincha(comuna_id,modo_transporte,nombre,email,celular,comentarios):
+	_email_hincha = get_hincha_by_email(email)
+	if _email_hincha is not None:
+		return False, "El correo indicado está en uso."
+	_phone_hincha = get_hincha_by_phone(celular)
+	if _phone_hincha is not None:
+		return False, "El número de celular indicado está en uso."
+	insert_hincha(comuna_id,modo_transporte,nombre,email,celular,comentarios)
+	return True, None
+

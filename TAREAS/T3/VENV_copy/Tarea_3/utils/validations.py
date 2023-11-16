@@ -1,11 +1,17 @@
 import re
 import filetype
 
+def validate_deportes(deportes):
+    return len(deportes) >= 1 and len(deportes) <= 3
+
 def validate_region(region):
-    return region != "Seleccione una Región"
+    return region != "" and region != None
 
 def validate_comuna(comuna):
-    return comuna != "Seleccione una Comuna"
+    return comuna != "" and comuna != None
+
+def validate_transporte(transporte):
+    return transporte != "" and transporte != None
 
 def validate_tipo_artesania(tipos_artesania):
     return len(tipos_artesania) >= 1 and len(tipos_artesania) <= 3
@@ -36,13 +42,16 @@ def validate_name(name):
 
 def validate_email(email):
     regex = r'^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$'
-    return re.match(regex, email)
+    return re.match(regex, email) and email != None
 
-    
 def validate_phone(phone):
     regex = r'^9\d{8}$'
     return re.match(regex, phone)
+
+def validate_comments(comments):
+    return True
     
+### Validación de Artesanos e Hinchas ###
 def validate_artesano(region,comuna,tipos,img1,img2,img3,name,email,phone):
     return (validate_region(region) 
             and validate_comuna(comuna) 
@@ -51,3 +60,13 @@ def validate_artesano(region,comuna,tipos,img1,img2,img3,name,email,phone):
             and validate_name(name) 
             and validate_email(email) 
             and validate_phone(phone))
+
+def validate_hincha(deportes,region,comuna,transporte,name,email,phone,comments):
+    return (validate_deportes(deportes) 
+            and validate_region(region) 
+            and validate_comuna(comuna) 
+            and validate_transporte(transporte) 
+            and validate_name(name) 
+            and validate_email(email) 
+            and validate_phone(phone)
+            and validate_comments(comments))

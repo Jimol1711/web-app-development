@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, redirect, url_for, flash, jsonify
 from flask_cors import cross_origin
-from utils.validations import validate_artesano, validate_artesania_img
+from utils.validations import validate_artesano, validate_hincha, validate_artesania_img
 import database.db as db
 from markupsafe import escape
 import uuid
@@ -23,7 +23,38 @@ def graphs():
 @app.route("/registrar-hincha", methods=["POST", "GET"])
 def registrar_hincha():
     if request.method == 'POST':
-        return 0 #agregar datos de hinchas y validaciones
+
+        deportes = request.form.getlist("deporte")
+        region = request.form.get("region")
+        comuna = request.form.get("comuna")
+        transporte = request.form.get("transporte")
+        name = request.form.get("name")
+        email = request.form.get("email")
+        phone = request.form.get("phone")
+        comments = request.form.get("comentarios")
+
+        if validate_hincha(deportes,region,comuna,transporte,name,email,phone,comments):
+
+            region_id = db.get_region_id(region)
+            comuna_id = db.get_comuna_id_by_region_id(region_id,comuna)
+            deportes_id = [db.get_deporte_id(deportes[0]),
+                           db.get_deporte_id(deportes[1]),
+                           db.get_deporte_id(deportes[2])]
+
+            if 'particular' in transporte:
+                modo_transporte = 1
+            elif 'locomoción pública' in transporte:
+                modo_transporte = 2
+
+            status, error = db.agregar_hincha(comuna_id,modo_transporte,name,email,phone,comments)
+
+            if status:
+                hincha_id = db.get_hincha_id()
+
+                for d in deportes:
+
+
+            return 0 #agregar datos de hinchas y validaciones
 
     return render_template("./agregar-hincha.html")
 
