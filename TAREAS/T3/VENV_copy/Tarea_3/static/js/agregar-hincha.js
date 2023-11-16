@@ -142,6 +142,8 @@ const transporteSelecter = document.getElementById("transporte");
 
 // Selector dinámico de deportes
 const deporteSelecter = document.getElementById("deporte");
+
+/*
 const selectContainer = document.getElementById("select-container");
 let selectCount = 0;
 let select1, select2, select3;
@@ -189,6 +191,7 @@ agregarSelector();
   
 // Agregar un evento para crear un nuevo selector al seleccionar una opción
 deporteSelecter.addEventListener("change", agregarSelector);
+*/
 
 // Agregar opciones al selector de regiones
 regiones_y_comunas.regiones.forEach(region => {
@@ -223,6 +226,7 @@ transportes.forEach(transporte => {
   });
 
 /* Validaciones */
+/*
 // Todas las validaciones empiezan con la validación de que efectivamente se haya seleccionado uno opción. Las validaciones opcionales no tienen esta opción.
 
 // Validación de Deporte
@@ -346,3 +350,4 @@ const validateForm = () => {
 
 let submitBtn = document.getElementById("submit-btn");
 submitBtn.addEventListener("click", validateForm);
+*/

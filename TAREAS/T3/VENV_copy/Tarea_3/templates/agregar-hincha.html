@@ -10,12 +10,68 @@
                 <h2 id="val-msg">Fallo Validación</h2>
                 <ul id="val-list"></ul>
             </div>
-            <form class="formulario" id="agregar-hincha" name="agregar-hincha" method="post" enctype="multipart/form-data">
-                <div id="deporte">
-                    <label for="deportes">Deporte que desea apoyar:</label>
-                    <select id="deportes" name="deportes" required hidden>
-                        <option value="" disabled selected>Seleccione una Opción</option>
-                    </select>
+            <form class="formulario" id="agregar-hincha" name="agregar-hincha" action="{{ url_for('registrar_hincha') }}" method="post" enctype="multipart/form-data">
+                <div id="checkbox-container" class="grupo-input">
+                    <label>Deporte que desea apoyar:</label>
+                    <div id="deporte-checkboxes">
+                        <input type="checkbox" name="deporte" value="adiestramiento_ecuestre">Adiestramiento ecuestre
+                        <input type="checkbox" name="deporte" value="atletismo">Atletismo
+                        <input type="checkbox" name="deporte" value="badminton">Bádminton
+                        <input type="checkbox" name="deporte" value="balonmano">Balonmano
+                        <input type="checkbox" name="deporte" value="baloncesto">Básquetbol
+                        <input type="checkbox" name="deporte" value="baloncesto_3x3">Básquetbol 3x3
+                        <input type="checkbox" name="deporte" value="beisbol">Béisbol
+                        <input type="checkbox" name="deporte" value="boxeo">Boxeo
+                        <input type="checkbox" name="deporte" value="bowling">Bowling
+                        <input type="checkbox" name="deporte" value="breaking">Breaking
+                        <input type="checkbox" name="deporte" value="canotaje_slalom">Canotaje Slalom
+                        <input type="checkbox" name="deporte" value="canotaje_velocidad">Canotaje de velocidad
+                        <input type="checkbox" name="deporte" value="ciclismo_pista">Ciclismo pista
+                        <input type="checkbox" name="deporte" value="ciclismo_ruta">Ciclismo ruta
+                        <input type="checkbox" name="deporte" value="clavados">Clavados
+                        <input type="checkbox" name="deporte" value="escalada_deportiva">Escalada deportiva
+                        <input type="checkbox" name="deporte" value="esgrima">Esgrima
+                        <input type="checkbox" name="deporte" value="esqui_acuatico_wakeboard">Esquí acuático y Wakeboard
+                        <input type="checkbox" name="deporte" value="futbol">Fútbol
+                        <input type="checkbox" name="deporte" value="gimnasia_artistica_femenina">Gimnasia artística Femenina
+                        <input type="checkbox" name="deporte" value="gimnasia_artistica_masculina">Gimnasia artística Masculina
+                        <input type="checkbox" name="deporte" value="gimnasia_ritmica">Gimnasia rítmica
+                        <input type="checkbox" name="deporte" value="gimnasia_trampolin">Gimnasia trampolín
+                        <input type="checkbox" name="deporte" value="golf">Golf
+                        <input type="checkbox" name="deporte" value="hockey_cesped">Hockey césped
+                        <input type="checkbox" name="deporte" value="judo">Judo
+                        <input type="checkbox" name="deporte" value="karate">Karate
+                        <input type="checkbox" name="deporte" value="levantamiento_pesas">Levantamiento de pesas
+                        <input type="checkbox" name="deporte" value="lucha">Lucha
+                        <input type="checkbox" name="deporte" value="maraton">Maratón
+                        <input type="checkbox" name="deporte" value="marcha">Marcha
+                        <input type="checkbox" name="deporte" value="mountain_bike">Mountain Bike
+                        <input type="checkbox" name="deporte" value="natacion">Natación
+                        <input type="checkbox" name="deporte" value="natacion_artistica">Natación artística
+                        <input type="checkbox" name="deporte" value="natacion_aguas_abiertas">Natación en Aguas abiertas
+                        <input type="checkbox" name="deporte" value="patinaje_artistico">Patinaje artístico
+                        <input type="checkbox" name="deporte" value="patinaje_velocidad">Patinaje velocidad
+                        <input type="checkbox" name="deporte" value="pelota_vasca">Pelota vasca
+                        <input type="checkbox" name="deporte" value="pentatlon_moderno">Pentatlón moderno
+                        <input type="checkbox" name="deporte" value="polo_acuatico">Polo acuático
+                        <input type="checkbox" name="deporte" value="racquetball">Racquetball
+                        <input type="checkbox" name="deporte" value="remo">Remo
+                        <input type="checkbox" name="deporte" value="rugby_7">Rugby 7
+                        <input type="checkbox" name="deporte" value="salto_ecuestre">Salto ecuestre
+                        <input type="checkbox" name="deporte" value="skateboarding">Skateboarding
+                        <input type="checkbox" name="deporte" value="softbol">Sóftbol
+                        <input type="checkbox" name="deporte" value="squash">Squash
+                        <input type="checkbox" name="deporte" value="surf">Surf
+                        <input type="checkbox" name="deporte" value="taekwondo">Taekwondo
+                        <input type="checkbox" name="deporte" value="tenis">Tenis
+                        <input type="checkbox" name="deporte" value="tenis_mesa">Tenis de mesa
+                        <input type="checkbox" name="deporte" value="tiro">Tiro
+                        <input type="checkbox" name="deporte" value="tiro_arco">Tiro con arco
+                        <input type="checkbox" name="deporte" value="triatlon">Triatlón
+                        <input type="checkbox" name="deporte" value="vela">Vela
+                        <input type="checkbox" name="deporte" value="voleibol">Vóleibol
+                        <input type="checkbox" name="deporte" value="voleibol_playa">Vóleibol playa
+                    </div>
                 </div>
 
                 <div id="region-selection" class="grupo-input">
@@ -60,7 +116,7 @@
                 </div>
                 
                 <div class="buttons">
-                    <button id = "submit-btn" type="button" onclick="validateForm()">
+                    <button id = "submit-btn" type="submit" onclick="validateForm()">
                         Registrar Hincha
                     </button>
                 </div>
@@ -68,4 +124,4 @@
         </div>
 {% endblock %}
 
-{% block javascript %}<script src="{{ url_for('static', filename='js/agregar-hincha.js') }}"></script>{% endblock %}
+<!--{% block javascript %}<script src="{{ url_for('static', filename='js/agregar-hincha.js') }}"></script>{% endblock %}-->

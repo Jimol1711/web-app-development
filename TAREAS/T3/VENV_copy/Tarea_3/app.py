@@ -16,6 +16,10 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def index():
     return render_template("index.html")
 
+@app.route("/graficos")
+def graphs():
+    return render_template("graficos.html")
+
 @app.route("/registrar-hincha", methods=["POST", "GET"])
 def registrar_hincha():
     if request.method == 'POST':

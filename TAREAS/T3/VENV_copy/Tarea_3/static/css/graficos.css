@@ -5,11 +5,27 @@
   }
   
   .highcharts-figure {
-    width: 90%; /* Adjust as needed */
-    margin-bottom: 40px; /* Add space between graphs */
+    width: 90%;
+    margin-bottom: 40px; 
   }
   
   .highcharts-description {
     text-align: center;
     margin-top: 10px;
+  }
+
+  .volver-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    background-color: #4caf50; /* Color de fondo */
+    color: white; /* Color del texto */
+    border-radius: 5px; /* Esquinas redondeadas */
+    transition: background-color 0.3s; /* Transición de color al pasar el ratón */
+  
+  }
+  
+  .volver-button:hover {
+    background-color: #45a049; /* Cambia el color al pasar el ratón */
   }
