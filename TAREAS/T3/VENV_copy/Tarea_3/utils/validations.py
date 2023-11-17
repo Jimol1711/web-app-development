@@ -5,13 +5,13 @@ def validate_deportes(deportes):
     return len(deportes) >= 1 and len(deportes) <= 3
 
 def validate_region(region):
-    return region != "" and region != None
+    return region != None
 
 def validate_comuna(comuna):
-    return comuna != "" and comuna != None
+    return comuna != None
 
 def validate_transporte(transporte):
-    return transporte != "" and transporte != None
+    return transporte != None
 
 def validate_tipo_artesania(tipos_artesania):
     return len(tipos_artesania) >= 1 and len(tipos_artesania) <= 3
@@ -41,12 +41,12 @@ def validate_name(name):
     return len(name) >= 3 and len(name) <= 80 and name != None
 
 def validate_email(email):
-    regex = r'^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$'
-    return re.match(regex, email) and email != None
+    regex = r'^[^\s@]+@[^\s@]+\.[^\s@]+$'
+    return  "@" in email and email != None
 
 def validate_phone(phone):
-    regex = r'^9\d{8}$'
-    return re.match(regex, phone)
+    regex = r'^\+569\d{8}$'
+    return re.match(regex, phone) or phone == None or phone == ""
 
 def validate_comments(comments):
     return True

@@ -1,4 +1,4 @@
-// Fetch data for chart 1
+// Fetch data del gráfico de artesanos
 fetch("http://localhost:5000/get-artesanos-data")
   .then((response) => response.json())
   .then((data) => {
@@ -26,7 +26,7 @@ fetch("http://localhost:5000/get-artesanos-data")
   })
   .catch((error) => console.error("Error:", error));
 
-// Fetch data for chart 2
+// Fetch data del gráfico de hinchas
 fetch("http://localhost:5000/get-hinchas-data")
   .then((response) => response.json())
   .then((data) => {

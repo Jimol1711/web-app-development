@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block info %}
-    <main>
+    <main class="button-container">
         <table>
         <thead>
             <tr>
@@ -39,6 +39,10 @@
             </tbody>
         </table>
         <a href="{{ url_for('index') }}" class="volver-button">Volver a la Portada</a>
+        {% if pag!=0 %}
+        <a href="{{ url_for('listado_hinchas', pag=pag-1) }}" class="siguiente-button">Anterior</a>
+        {% endif %}
+        <a href="{{ url_for('listado_hinchas', pag=pag+1) }}" class="anterior-button">Siguiente</a>
     </main>
 {% endblock %}
 

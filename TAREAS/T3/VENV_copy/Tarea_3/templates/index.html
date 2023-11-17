@@ -26,7 +26,7 @@
     <nav>
         <a href="{{ url_for('registrar_hincha') }}">Registrar Hincha</a>
         <a href="{{ url_for('registrar_artesano') }}">Registrar Artesano</a>
-        <a href="{{ url_for('listado_hinchas') }}">Ver Listado de Hinchas</a>
+        <a href="{{ url_for('listado_hinchas', pag=0) }}">Ver Listado de Hinchas</a>
         <a href="{{ url_for('listado_artesanos') }}">Ver Listado de Artesanos</a>
         <a href="{{ url_for('graphs') }}">Ver Estadísticas de Artesanías y Deportes</a>
     </nav>

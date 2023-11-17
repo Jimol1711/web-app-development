@@ -47,7 +47,7 @@ def fetch_newest5_artesano(page):
 	return listado
 
 def fetch_newest5_hincha(page):
-	page = page * 5
+	page = (page-1) * 5
 	conn = get_conn()
 	cursor = conn.cursor()
 	cursor.execute(QUERY_DICT["select_newest_5_hincha"], (page))
@@ -161,16 +161,17 @@ def get_comuna_id_by_region_id(region_id,comuna):
 def get_deporte_id(deporte):
 	conn = get_conn()
 	cursor = conn.cursor()
-	cursor.execute(QUERY_DICT["get_deporte_id"], tipo)
+	cursor.execute(QUERY_DICT["get_deporte_id"], deporte)
 	deporte_id = cursor.fetchone()
-	conn.commit()
 	return deporte_id
 
 def get_tipo_id(tipo):
 	conn = get_conn()
 	cursor = conn.cursor()
 	cursor.execute(QUERY_DICT["get_tipo_id"], tipo)
+	tipo_id = cursor.fetchone()
 	conn.commit()
+	return tipo_id
 
 def get_comuna_by_id(comuna_id):
 	conn = get_conn()

@@ -60,3 +60,29 @@ a.no-link-style {
     text-decoration: none;
     color: black;
 }
+
+.button-container {
+    position: relative;
+}
+
+.anterior-button,
+.siguiente-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    position: absolute;
+}
+
+.anterior-button {
+    left: 85.5%;
+    top: 82%;
+}
+
+.siguiente-button {
+    right: 15%;
+    top: 82%;
+}

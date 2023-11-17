@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, redirect, url_for, flash, jsonify
 from flask_cors import cross_origin
-from utils.validations import validate_artesano, validate_hincha, validate_artesania_img
+from utils.validations import validate_artesano, validate_hincha, validate_artesania_img, validate_phone
 import database.db as db
 from markupsafe import escape
 import uuid
@@ -9,6 +9,7 @@ import filetype
 UPLOAD_FOLDER = 'uploads'
 
 app = Flask(__name__)
+app.secret_key = 'llave_super_secreta'
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -33,43 +34,62 @@ def registrar_hincha():
         phone = request.form.get("phone")
         comments = request.form.get("comentarios")
 
+        # Server side hincha validation
         if validate_hincha(deportes,region,comuna,transporte,name,email,phone,comments):
-
+        
             region_id = db.get_region_id(region)
             comuna_id = db.get_comuna_id_by_region_id(region_id,comuna)
             deportes_id = [db.get_deporte_id(deportes[0]),
-                           db.get_deporte_id(deportes[1]),
-                           db.get_deporte_id(deportes[2])]
-
+                            db.get_deporte_id(deportes[1]) if len(deportes)>1 else None,
+                            db.get_deporte_id(deportes[2]) if len(deportes)>2 else None]
+            
             if 'particular' in transporte:
                 modo_transporte = 1
             elif 'locomoción pública' in transporte:
                 modo_transporte = 2
 
-            status, error = db.agregar_hincha(comuna_id,modo_transporte,name,email,phone,comments)
+            # Inserting hincha and obtaining id
+            db.insert_hincha(comuna_id,modo_transporte,name,email,phone,comments)
+            hincha_id = db.get_hincha_id()
 
-            if status:
-                hincha_id = db.get_hincha_id()
-
-                for did in deportes_id:
+            for did in deportes_id:
                     if did is not None:
                         db.insert_hincha_deporte(hincha_id,did)
-                
-                flash("Hincha registrado exitosamente.", "success")
-                return redirect(url_for("index"))
-
-            else:
-                msg = ""
-                flash(f"Fallo validación: {msg}", error)
+        
+            return redirect(url_for("index"))
         else:
-            flash(f"Fallo validación")
+            error = ["Hay errores en la validación:"]
+            if len(deportes) < 1 or len(deportes) > 3:
+                error_deportes = "Número de deportes seleccionado inválido"
+                error.append(error_deportes)
+            if region is None:
+                error_region = "Seleccione una Región"
+                error.append(error_region)
+            if comuna is None:
+                error_comuna = "Seleccione una Comuna"
+                error.append(error_comuna)
+            if transporte is None:
+                error_transporte = "Seleccione un modo de Transporte"
+                error.append(error_transporte)
+            if name is "":
+                error_nombre = "Indique su nombre"
+                error.append(error_nombre)
+            if email is "":
+                error_email = "Indique su email de contacto"
+                error.append(error_email)
+            if validate_phone(phone) is False:
+                error_telefono = "Indique un número telefónico válido"
+                error.append(error_telefono)
+            
+            return render_template("./agregar-hincha.html", error=error)
 
-    return render_template("./agregar-hincha.html")
+    elif request.method == 'GET':
+        return render_template("./agregar-hincha.html")
 
-@app.route("/listado-hinchas", methods=["GET"])
-def listado_hinchas():
+@app.route("/listado-hinchas/<int:pag>", methods=["GET"])
+def listado_hinchas(pag):
 
-    list_hinchas = db.fetch_newest5_hincha(0)
+    list_hinchas = db.fetch_newest5_hincha(pag+1)
 
     info_hinchas = []
     
@@ -88,7 +108,7 @@ def listado_hinchas():
         
         info_hinchas.append(info_hincha)
 
-    return render_template("./ver-hinchas.html", info_hinchas=info_hinchas)
+    return render_template("./ver-hinchas.html", info_hinchas=info_hinchas, pag=pag)
 
 @app.route("/informacion-hincha/<int:id>", methods=["GET"])
 def ver_hincha(id): 
