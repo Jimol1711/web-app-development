@@ -65,8 +65,8 @@ a.no-link-style {
     position: relative;
 }
 
-.anterior-button,
-.siguiente-button {
+.siguiente-button,
+.anterior-button {
     background-color: #333;
     color: white;
     border: none;
@@ -77,12 +77,12 @@ a.no-link-style {
     position: absolute;
 }
 
-.anterior-button {
+.siguiente-button {
     left: 85.5%;
     top: 82%;
 }
 
-.siguiente-button {
+.anterior-button {
     right: 15%;
     top: 82%;
 }

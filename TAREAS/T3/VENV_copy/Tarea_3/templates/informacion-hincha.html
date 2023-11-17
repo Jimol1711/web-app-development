@@ -29,14 +29,18 @@
             <h2>Modo de Transporte:</h2>
             <p id="transporteHincha">{{ info_hincha.transporte }}</p>
 
+            {% if info_hincha.phone %}
             <h2>Número de Celular:</h2>
             <p id="celularHincha">{{ info_hincha.phone }}</p>
+            {% endif %}
 
             <h2>Email de Contacto:</h2>
             <p id="emailHincha">{{ info_hincha.email }}</p>
 
+            {% if info_hincha.comments %}
             <h2>Comentarios Adicionales:</h2>
             <p id="comentariosHincha">{{ info_hincha.comments }}</p>
+            {% endif %}
 
             <a href="{{ url_for('listado_hinchas', pag=0) }}">Volver al Listado de Hinchas</a>
         </div>

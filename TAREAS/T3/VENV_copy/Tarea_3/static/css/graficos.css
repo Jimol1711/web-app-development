@@ -19,13 +19,13 @@
     padding: 10px 20px;
     font-size: 16px;
     text-decoration: none;
-    background-color: #4caf50; /* Color de fondo */
-    color: white; /* Color del texto */
-    border-radius: 5px; /* Esquinas redondeadas */
-    transition: background-color 0.3s; /* Transición de color al pasar el ratón */
+    background-color: #4caf50; 
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s;
   
   }
   
   .volver-button:hover {
-    background-color: #45a049; /* Cambia el color al pasar el ratón */
+    background-color: #45a049;
   }

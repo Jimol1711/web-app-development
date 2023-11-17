@@ -40,9 +40,11 @@
         </table>
         <a href="{{ url_for('index') }}" class="volver-button">Volver a la Portada</a>
         {% if pag!=0 %}
-        <a href="{{ url_for('listado_hinchas', pag=pag-1) }}" class="siguiente-button">Anterior</a>
+        <a href="{{ url_for('listado_hinchas', pag=pag-1) }}" class="anterior-button">Anterior</a>
         {% endif %}
-        <a href="{{ url_for('listado_hinchas', pag=pag+1) }}" class="anterior-button">Siguiente</a>
+        {% if hartos_hinchas %}
+        <a href="{{ url_for('listado_hinchas', pag=pag+1) }}" class="siguiente-button">Siguiente</a>
+        {% endif %}
     </main>
 {% endblock %}
 

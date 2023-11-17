@@ -201,6 +201,20 @@ def count_artesanos():
 	conteo = cursor.fetchone()
 	return conteo
 
+def count_hinchas():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["count_hinchas"])
+	conteo = cursor.fetchone()
+	return conteo
+
+def get_last_hincha():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["count_hinchas"])
+	conteo = cursor.fetchone()
+	return conteo
+
 def get_count_artesanos_by_tipo():
 	conn = get_conn()
 	cursor = conn.cursor()

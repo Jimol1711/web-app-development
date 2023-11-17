@@ -108,7 +108,13 @@ def listado_hinchas(pag):
         
         info_hinchas.append(info_hincha)
 
-    return render_template("./ver-hinchas.html", info_hinchas=info_hinchas, pag=pag)
+        # Pagination logic
+        if info_hincha["id"]!=1:
+            hartos_hinchas = db.count_hinchas()[0] > 5
+        else:
+            hartos_hinchas = False
+
+    return render_template("./ver-hinchas.html", info_hinchas=info_hinchas, pag=pag, hartos_hinchas=hartos_hinchas)
 
 @app.route("/informacion-hincha/<int:id>", methods=["GET"])
 def ver_hincha(id): 

@@ -24,6 +24,7 @@
     "get_artesano_by_id": "SELECT comuna_id, descripcion_artesania, nombre, email, celular FROM artesano WHERE id = %s",
     "get_hincha_by_id":"SELECT comuna_id, modo_transporte, nombre, email, celular, comentarios FROM hincha WHERE id = %s",
     "count_artesanos": "SELECT COUNT(*) FROM artesano",
+    "count_hinchas": "SELECT COUNT(*) FROM hincha",
     "count_artesanos_by_tipo": "SELECT TA.nombre AS artesania_name, COUNT(AT.artesano_id) AS num_artesanos FROM tipo_artesania TA JOIN artesano_tipo AT ON TA.id = AT.tipo_artesania_id GROUP BY TA.nombre",
     "count_hinchas_by_deporte": "SELECT D.nombre AS deporte_name, COUNT(HD.hincha_id) AS num_hinchas FROM deporte D JOIN hincha_deporte HD ON D.id = HD.deporte_id GROUP BY D.nombre"
 }
