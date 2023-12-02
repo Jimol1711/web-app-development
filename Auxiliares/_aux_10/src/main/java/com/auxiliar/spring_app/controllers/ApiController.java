@@ -2,8 +2,8 @@ package com.auxiliar.spring_app.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aux.spring_app.confession.Confession;
-import com.aux.spring_app.services.ApiService;
+import com.auxiliar.spring_app.confession.Confession;
+import com.auxiliar.spring_app.services.ApiService;
 
 import java.util.List;
 import java.util.Map;

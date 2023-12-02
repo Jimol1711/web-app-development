@@ -12,8 +12,8 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.aux.spring_app.confession.Confession;
-import com.aux.spring_app.confession.ConfessionRepository;
+import com.auxiliar.spring_app.confession.Confession;
+import com.auxiliar.spring_app.confession.ConfessionRepository;
 
 @Service
 public class ApiService {

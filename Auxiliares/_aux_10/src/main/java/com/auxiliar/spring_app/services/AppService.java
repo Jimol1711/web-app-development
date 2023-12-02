@@ -17,8 +17,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.aux.spring_app.confession.Confession;
-import com.aux.spring_app.confession.ConfessionRepository;
+import com.auxiliar.spring_app.confession.Confession;
+import com.auxiliar.spring_app.confession.ConfessionRepository;
 
 
 @Service

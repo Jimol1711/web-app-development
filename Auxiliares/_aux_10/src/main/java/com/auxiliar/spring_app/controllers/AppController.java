@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.aux.spring_app.services.AppService;
+import com.auxiliar.spring_app.services.AppService;
 
 @Controller
 public class AppController {
