@@ -1,4 +1,4 @@
-package com.aux.spring_app.services;
+package com.auxiliar.spring_app.services;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

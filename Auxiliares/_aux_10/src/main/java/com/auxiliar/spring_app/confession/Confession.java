@@ -1,4 +1,4 @@
-package com.aux.spring_app.confession;
+package com.auxiliar.spring_app.confession;
 
 import java.time.LocalDateTime;
 

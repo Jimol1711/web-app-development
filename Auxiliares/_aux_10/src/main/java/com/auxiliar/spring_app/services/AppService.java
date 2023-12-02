@@ -1,4 +1,4 @@
-package com.aux.spring_app.services;
+package com.auxiliar.spring_app.services;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

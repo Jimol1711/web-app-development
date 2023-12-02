@@ -1,4 +1,4 @@
-package com.aux.spring_app.controllers;
+package com.auxiliar.spring_app.controllers;
 
 import java.util.List;
 import java.util.Map;
