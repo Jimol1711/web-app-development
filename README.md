@@ -1,6 +1,6 @@
 # Repository for Web App Development
 
-This repository contains all the materials and assignments for the Web App Development course. It is organized into four folders and includes a `.gitignore` file. Below is a brief description of each section.
+This repository contains all the materials and assignments for the Web App Development course. It is organized into four folders. Below is a brief description of each section.
 
 ---
 
